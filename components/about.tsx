@@ -12,16 +12,14 @@ export default function About() {
           <div className="p-6 rounded-lg border border-cyan-500/30 bg-slate-900/50 backdrop-blur-sm hover:border-cyan-400/60 transition-all duration-300 hover:glow-cyan">
             <h3 className="text-xl font-bold text-cyan-400 mb-3">What is TECHLETICS?</h3>
             <p className="text-gray-300 leading-relaxed">
-              TECHLETICS is a revolutionary college sports event that merges cutting-edge technology with traditional
-              athletics. It's not just sports—it's athletics reimagined for the digital age.
+               TECHLETICS is a groundbreaking software engineering sports event that blends technology with traditional athletics. It’s more than just sports it’s about innovation in motion..
             </p>
           </div>
 
           <div className="p-6 rounded-lg border border-magenta-500/30 bg-slate-900/50 backdrop-blur-sm hover:border-magenta-400/60 transition-all duration-300 hover:glow-magenta">
             <h3 className="text-xl font-bold text-magenta-400 mb-3">Vision</h3>
             <p className="text-gray-300 leading-relaxed">
-              To showcase the pinnacle of college athletics through an innovative lens, celebrating both physical
-              excellence and technological innovation in competitive sports.
+              To bring together exciting sports, healthy competition, and innovative technology, creating an unforgettable experience for all participants.
             </p>
           </div>
         </div>
@@ -30,15 +28,15 @@ export default function About() {
           <h3 className="text-2xl font-bold mb-6 text-center text-cyan-300">Key Highlights</h3>
           <div className="grid md:grid-cols-3 gap-6">
             <div className="text-center">
-              <div className="text-4xl font-bold text-cyan-400 mb-2">50+</div>
+              <div className="text-4xl font-bold text-cyan-400 mb-2">100+</div>
               <p className="text-gray-300">Participants</p>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-magenta-400 mb-2">10+</div>
-              <p className="text-gray-300">Events</p>
+              <div className="text-4xl font-bold text-magenta-400 mb-2">8</div>
+              <p className="text-gray-300">Different Sports</p>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-cyan-400 mb-2">1</div>
+              <div className="text-4xl font-bold text-cyan-400 mb-2">∞</div>
               <p className="text-gray-300">Unforgettable Experience</p>
             </div>
           </div>

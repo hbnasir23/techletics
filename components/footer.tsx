@@ -97,11 +97,12 @@ export default function Footer() {
 
 
 
-        {/* Divider */}
+       
+      </div>
+       {/* Divider */}
         <div className="border-t border-slate-800 pt-8">
           <p className="text-center text-gray-500 text-sm">© 2026 TECHLETICS. All rights reserved. Techletics 2.0</p>
         </div>
-      </div>
     </div>
     </footer>
   )
