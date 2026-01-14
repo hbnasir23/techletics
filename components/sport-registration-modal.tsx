@@ -296,6 +296,11 @@ interface TeamMember {
   rollNo: string
 }
 
+interface TeamMemberErrors {
+  name?: string
+  rollNo?: string
+}
+
 interface SportRegistrationModalProps {
   sport: Sport
   isOpen: boolean
@@ -309,6 +314,7 @@ interface ValidationErrors {
   section?: string
   teamName?: string
   teamMembers?: string
+  captainPhone?: string
 }
 
 export default function SportRegistrationModal({ sport, isOpen, onClose }: SportRegistrationModalProps) {
@@ -318,10 +324,16 @@ export default function SportRegistrationModal({ sport, isOpen, onClose }: Sport
     captainRollNo: "",
     section: "",
     teamName: "",
+    captainPhone: "",
   })
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([])
   const [errors, setErrors] = useState<ValidationErrors>({})
   const [touched, setTouched] = useState<Record<string, boolean>>({})
+  const [teamMemberErrors, setTeamMemberErrors] = useState<TeamMemberErrors[]>([])
+  const [teamMemberTouched, setTeamMemberTouched] = useState<Array<{ name?: boolean; rollNo?: boolean }>>([])
+
+  // Student types for section validation
+  const studentTypes = ['FESE', 'SESE', 'TESE', 'FYP']
 
   // Reset form when modal opens with new sport
   useEffect(() => {
@@ -335,6 +347,7 @@ export default function SportRegistrationModal({ sport, isOpen, onClose }: Sport
       case 'captainName':
         if (!value) return 'Name is required'
         if (value.length < 3) return 'Name must be at least 3 characters'
+        if (!/^[a-zA-Z\s]+$/.test(value)) return 'Name must contain letters only'
         return undefined
 
       case 'captainEmail':
@@ -351,12 +364,38 @@ export default function SportRegistrationModal({ sport, isOpen, onClose }: Sport
 
       case 'section':
         if (!value) return 'Section is required'
-        const sectionRegex = /^[A-Z]{2,5}-[A-Z]$/
-        if (!sectionRegex.test(value)) return 'Must match format: FESE-B'
+        const sectionRegex = /^(FESE|SESE|TESE|FYP)-[A-B]$/
+        if (!sectionRegex.test(value)) return 'Must match format: FESE-A or FESE-B'
         return undefined
 
       case 'teamName':
         if (sport.type !== 'solo' && !value) return 'Team name is required'
+        if (sport.type !== 'solo' && value.length < 3) return 'Team name must be at least 3 characters'
+        return undefined
+
+      case 'captainPhone':
+        if (!value) return 'Phone number is required'
+        const phoneRegex = /^03\d{9}$/
+        if (!phoneRegex.test(value)) return 'Must be a valid phone number (e.g., 03XXXXXXXXX)'
+        return undefined
+
+      default:
+        return undefined
+    }
+  }
+
+  const validateTeamMemberField = (field: 'name' | 'rollNo', value: string): string | undefined => {
+    switch (field) {
+      case 'name':
+        if (!value) return 'Name is required'
+        if (value.length < 3) return 'Name must be at least 3 characters'
+        if (!/^[a-zA-Z\s]+$/.test(value)) return 'Name must contain letters only'
+        return undefined
+
+      case 'rollNo':
+        if (!value) return 'Roll number is required'
+        const rollNoRegex = /^SE-\d{5}$/
+        if (!rollNoRegex.test(value)) return 'Must match format: SE-23086'
         return undefined
 
       default:
@@ -371,6 +410,35 @@ export default function SportRegistrationModal({ sport, isOpen, onClose }: Sport
     if (errors[field as keyof ValidationErrors]) {
       setErrors(prev => ({ ...prev, [field]: undefined }))
     }
+  }
+
+  const handleSectionChange = (value: string) => {
+    // Auto-format section input
+    const upperValue = value.toUpperCase()
+    
+    // If user types a dash, help them format correctly
+    if (upperValue.includes('-')) {
+      const parts = upperValue.split('-')
+      if (parts.length === 2) {
+        const studentType = parts[0]
+        const section = parts[1]
+        
+        // Validate student type
+        if (studentTypes.includes(studentType)) {
+          // Only allow A or B for section
+          if (section === '' || section === 'A' || section === 'B') {
+            handleFieldChange('section', upperValue)
+            return
+          } else {
+            // Replace invalid section with empty
+            handleFieldChange('section', studentType + '-')
+            return
+          }
+        }
+      }
+    }
+    
+    handleFieldChange('section', upperValue)
   }
 
   const handleEmailChange = (value: string) => {
@@ -392,10 +460,29 @@ export default function SportRegistrationModal({ sport, isOpen, onClose }: Sport
     }
   }
 
+  const handleTeamMemberBlur = (index: number, field: 'name' | 'rollNo') => {
+    const newTouched = [...teamMemberTouched]
+    if (!newTouched[index]) {
+      newTouched[index] = {}
+    }
+    newTouched[index][field] = true
+    setTeamMemberTouched(newTouched)
+
+    const value = teamMembers[index][field]
+    const error = validateTeamMemberField(field, value)
+    
+    const newErrors = [...teamMemberErrors]
+    if (!newErrors[index]) {
+      newErrors[index] = {}
+    }
+    newErrors[index][field] = error
+    setTeamMemberErrors(newErrors)
+  }
+
   const validateForm = (): boolean => {
     const newErrors: ValidationErrors = {}
 
-    // Validate all fields
+    // Validate all captain fields
     Object.keys(formData).forEach(field => {
       const error = validateField(field, formData[field as keyof typeof formData])
       if (error) {
@@ -403,14 +490,33 @@ export default function SportRegistrationModal({ sport, isOpen, onClose }: Sport
       }
     })
 
-    // Check team members
+    // Validate team members
     if (sport.type !== 'solo') {
       if (teamMembers.length < getRequiredMembersCount()) {
         newErrors.teamMembers = `Please add all ${sport.type === 'doubles' ? 'partner' : 'team members'} (${teamMembers.length}/${getRequiredMembersCount()} added)`
       } else {
-        const incompleteMembers = teamMembers.some(m => !m.name || !m.rollNo)
-        if (incompleteMembers) {
-          newErrors.teamMembers = 'All team members must have name and roll number'
+        // Check each team member
+        const memberErrors: TeamMemberErrors[] = []
+        let hasError = false
+
+        teamMembers.forEach((member, index) => {
+          const nameError = validateTeamMemberField('name', member.name)
+          const rollNoError = validateTeamMemberField('rollNo', member.rollNo)
+          
+          memberErrors[index] = {
+            name: nameError,
+            rollNo: rollNoError
+          }
+
+          if (nameError || rollNoError) {
+            hasError = true
+          }
+        })
+
+        setTeamMemberErrors(memberErrors)
+
+        if (hasError) {
+          newErrors.teamMembers = 'Please fix all team member errors'
         }
       }
     }
@@ -422,7 +528,14 @@ export default function SportRegistrationModal({ sport, isOpen, onClose }: Sport
       captainRollNo: true,
       section: true,
       teamName: true,
+      captainPhone: true,
     })
+
+    // Mark all team members as touched
+    if (sport.type !== 'solo') {
+      const allTouched = teamMembers.map(() => ({ name: true, rollNo: true }))
+      setTeamMemberTouched(allTouched)
+    }
 
     // Show first error as toast
     const firstError = Object.values(newErrors)[0]
@@ -457,6 +570,9 @@ export default function SportRegistrationModal({ sport, isOpen, onClose }: Sport
 
     if (teamMembers.length < maxMembers) {
       setTeamMembers([...teamMembers, { name: "", rollNo: "" }])
+      setTeamMemberErrors([...teamMemberErrors, {}])
+      setTeamMemberTouched([...teamMemberTouched, {}])
+      
       // Clear team members error when adding
       if (errors.teamMembers) {
         setErrors(prev => ({ ...prev, teamMembers: undefined }))
@@ -466,12 +582,23 @@ export default function SportRegistrationModal({ sport, isOpen, onClose }: Sport
 
   const removeTeamMember = (index: number) => {
     setTeamMembers(teamMembers.filter((_, i) => i !== index))
+    setTeamMemberErrors(teamMemberErrors.filter((_, i) => i !== index))
+    setTeamMemberTouched(teamMemberTouched.filter((_, i) => i !== index))
   }
 
   const updateTeamMember = (index: number, field: keyof TeamMember, value: string) => {
     const updated = [...teamMembers]
     updated[index][field] = value
     setTeamMembers(updated)
+
+    // Clear error when user starts typing
+    if (teamMemberErrors[index]?.[field]) {
+      const newErrors = [...teamMemberErrors]
+      if (newErrors[index]) {
+        newErrors[index][field] = undefined
+      }
+      setTeamMemberErrors(newErrors)
+    }
   }
 
   const resetForm = () => {
@@ -481,10 +608,13 @@ export default function SportRegistrationModal({ sport, isOpen, onClose }: Sport
       captainRollNo: "",
       section: "",
       teamName: "",
+      captainPhone: "",
     })
     setTeamMembers([])
     setErrors({})
     setTouched({})
+    setTeamMemberErrors([])
+    setTeamMemberTouched([])
   }
 
   const getRequiredMembersCount = () => {
@@ -510,8 +640,15 @@ export default function SportRegistrationModal({ sport, isOpen, onClose }: Sport
     // Check team completion
     if (sport.type !== 'solo') {
       if (!isTeamComplete()) return false
-      const incompleteMembers = teamMembers.some(m => !m.name || !m.rollNo)
-      if (incompleteMembers) return false
+      
+      // Check all team members are valid
+      const allMembersValid = teamMembers.every(member => {
+        const nameError = validateTeamMemberField('name', member.name)
+        const rollNoError = validateTeamMemberField('rollNo', member.rollNo)
+        return !nameError && !rollNoError
+      })
+      
+      if (!allMembersValid) return false
     }
 
     return true
@@ -598,7 +735,7 @@ export default function SportRegistrationModal({ sport, isOpen, onClose }: Sport
                       className={`w-full px-4 py-2 rounded-lg bg-slate-800/50 border ${
                         touched.captainName && errors.captainName
                           ? 'border-red-500 focus:border-red-400'
-                          : touched.captainName && !errors.captainName
+                          : touched.captainName && !errors.captainName && formData.captainName
                           ? 'border-green-500 focus:border-green-400'
                           : 'border-slate-700 focus:border-cyan-400'
                       } text-white placeholder-gray-500 focus:outline-none transition-colors duration-300`}
@@ -628,7 +765,7 @@ export default function SportRegistrationModal({ sport, isOpen, onClose }: Sport
                       className={`w-full px-4 py-2 rounded-lg bg-slate-800/50 border ${
                         touched.captainEmail && errors.captainEmail
                           ? 'border-red-500 focus:border-red-400'
-                          : touched.captainEmail && !errors.captainEmail
+                          : touched.captainEmail && !errors.captainEmail && formData.captainEmail
                           ? 'border-green-500 focus:border-green-400'
                           : 'border-slate-700 focus:border-cyan-400'
                       } text-white placeholder-gray-500 focus:outline-none transition-colors duration-300`}
@@ -659,7 +796,7 @@ export default function SportRegistrationModal({ sport, isOpen, onClose }: Sport
                         className={`w-full px-4 py-2 rounded-lg bg-slate-800/50 border ${
                           touched.captainRollNo && errors.captainRollNo
                             ? 'border-red-500 focus:border-red-400'
-                            : touched.captainRollNo && !errors.captainRollNo
+                            : touched.captainRollNo && !errors.captainRollNo && formData.captainRollNo
                             ? 'border-green-500 focus:border-green-400'
                             : 'border-slate-700 focus:border-cyan-400'
                         } text-white placeholder-gray-500 focus:outline-none transition-colors duration-300`}
@@ -677,6 +814,38 @@ export default function SportRegistrationModal({ sport, isOpen, onClose }: Sport
                     )}
                   </div>
 
+                  {/* Phone Number Field */}
+                  <div>
+                    <label className="block text-sm font-bold text-cyan-300 mb-2">Phone Number *</label>
+                    <div className="relative">
+                      <input
+                        type="text"
+                        value={formData.captainPhone}
+                        onChange={(e) => handleFieldChange('captainPhone', e.target.value)}
+                        onBlur={() => handleBlur('captainPhone')}
+                        className={`w-full px-4 py-2 rounded-lg bg-slate-800/50 border ${
+                          touched.captainPhone && errors.captainPhone
+                            ? 'border-red-500 focus:border-red-400'
+                            : touched.captainPhone && !errors.captainPhone && formData.captainPhone
+                            ? 'border-green-500 focus:border-green-400'
+                            : 'border-slate-700 focus:border-cyan-400'
+                        } text-white placeholder-gray-500 focus:outline-none transition-colors duration-300`}
+                        placeholder="03XXXXXXXXX"
+                      />
+                      {touched.captainPhone && !errors.captainPhone && formData.captainPhone && (
+                        <CheckCircle2 className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-green-500" />
+                      )}
+                    </div>
+                    {touched.captainPhone && errors.captainPhone && (
+                      <p className="mt-1 text-xs text-red-400 flex items-center gap-1">
+                        <AlertCircle className="w-3 h-3" />
+                        {errors.captainPhone}
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-4">
                   {/* Section Field */}
                   <div>
                     <label className="block text-sm font-bold text-cyan-300 mb-2">Section *</label>
@@ -684,16 +853,16 @@ export default function SportRegistrationModal({ sport, isOpen, onClose }: Sport
                       <input
                         type="text"
                         value={formData.section}
-                        onChange={(e) => handleFieldChange('section', e.target.value.toUpperCase())}
+                        onChange={(e) => handleSectionChange(e.target.value)}
                         onBlur={() => handleBlur('section')}
                         className={`w-full px-4 py-2 rounded-lg bg-slate-800/50 border ${
                           touched.section && errors.section
                             ? 'border-red-500 focus:border-red-400'
-                            : touched.section && !errors.section
+                            : touched.section && !errors.section && formData.section
                             ? 'border-green-500 focus:border-green-400'
                             : 'border-slate-700 focus:border-cyan-400'
                         } text-white placeholder-gray-500 focus:outline-none transition-colors duration-300`}
-                        placeholder="e.g., FESE-B"
+                        placeholder="e.g., FESE-A or FESE-B"
                       />
                       {touched.section && !errors.section && formData.section && (
                         <CheckCircle2 className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-green-500" />
@@ -705,40 +874,43 @@ export default function SportRegistrationModal({ sport, isOpen, onClose }: Sport
                         {errors.section}
                       </p>
                     )}
+                    <p className="mt-1 text-xs text-gray-500">
+                      Valid types: FESE, SESE, TESE, FYP (Section: A or B)
+                    </p>
                   </div>
-                </div>
 
-                {/* Team Name Field */}
-                {sport.type !== 'solo' && (
-                  <div>
-                    <label className="block text-sm font-bold text-cyan-300 mb-2">Team Name *</label>
-                    <div className="relative">
-                      <input
-                        type="text"
-                        value={formData.teamName}
-                        onChange={(e) => handleFieldChange('teamName', e.target.value)}
-                        onBlur={() => handleBlur('teamName')}
-                        className={`w-full px-4 py-2 rounded-lg bg-slate-800/50 border ${
-                          touched.teamName && errors.teamName
-                            ? 'border-red-500 focus:border-red-400'
-                            : touched.teamName && !errors.teamName
-                            ? 'border-green-500 focus:border-green-400'
-                            : 'border-slate-700 focus:border-cyan-400'
-                        } text-white placeholder-gray-500 focus:outline-none transition-colors duration-300`}
-                        placeholder="Enter team name"
-                      />
-                      {touched.teamName && !errors.teamName && formData.teamName && (
-                        <CheckCircle2 className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-green-500" />
+                  {/* Team Name Field */}
+                  {sport.type !== 'solo' && (
+                    <div>
+                      <label className="block text-sm font-bold text-cyan-300 mb-2">Team Name *</label>
+                      <div className="relative">
+                        <input
+                          type="text"
+                          value={formData.teamName}
+                          onChange={(e) => handleFieldChange('teamName', e.target.value)}
+                          onBlur={() => handleBlur('teamName')}
+                          className={`w-full px-4 py-2 rounded-lg bg-slate-800/50 border ${
+                            touched.teamName && errors.teamName
+                              ? 'border-red-500 focus:border-red-400'
+                              : touched.teamName && !errors.teamName && formData.teamName
+                              ? 'border-green-500 focus:border-green-400'
+                              : 'border-slate-700 focus:border-cyan-400'
+                          } text-white placeholder-gray-500 focus:outline-none transition-colors duration-300`}
+                          placeholder="Enter team name"
+                        />
+                        {touched.teamName && !errors.teamName && formData.teamName && (
+                          <CheckCircle2 className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-green-500" />
+                        )}
+                      </div>
+                      {touched.teamName && errors.teamName && (
+                        <p className="mt-1 text-xs text-red-400 flex items-center gap-1">
+                          <AlertCircle className="w-3 h-3" />
+                          {errors.teamName}
+                        </p>
                       )}
                     </div>
-                    {touched.teamName && errors.teamName && (
-                      <p className="mt-1 text-xs text-red-400 flex items-center gap-1">
-                        <AlertCircle className="w-3 h-3" />
-                        {errors.teamName}
-                      </p>
-                    )}
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
             </div>
 
@@ -783,32 +955,71 @@ export default function SportRegistrationModal({ sport, isOpen, onClose }: Sport
                         <span className="text-sm font-bold text-cyan-300">
                           {sport.type === 'doubles' ? 'Partner' : `Member ${index + 1}`}
                         </span>
-                        <button
-                          type="button"
-                          onClick={() => removeTeamMember(index)}
+                        <button 
+                          type="button" 
+                          onClick={() => removeTeamMember(index)} 
                           className="text-red-400 hover:text-red-300 transition-colors"
                         >
                           <Trash2 className="w-4 h-4" />
                         </button>
                       </div>
                       <div className="grid md:grid-cols-2 gap-3">
+                        {/* Member Name */}
                         <div>
-                          <input
-                            type="text"
-                            value={member.name}
-                            onChange={(e) => updateTeamMember(index, 'name', e.target.value)}
-                            className="w-full px-3 py-2 rounded-lg bg-slate-800/50 border border-slate-700 text-white placeholder-gray-500 focus:border-cyan-400 focus:outline-none transition-colors duration-300"
-                            placeholder="Member name"
-                          />
+                          <div className="relative">
+                            <input
+                              type="text"
+                              value={member.name}
+                              onChange={(e) => updateTeamMember(index, 'name', e.target.value)}
+                              onBlur={() => handleTeamMemberBlur(index, 'name')}
+                              className={`w-full px-3 py-2 rounded-lg bg-slate-800/50 border ${
+                                teamMemberTouched[index]?.name && teamMemberErrors[index]?.name
+                                  ? 'border-red-500 focus:border-red-400'
+                                  : teamMemberTouched[index]?.name && !teamMemberErrors[index]?.name && member.name
+                                  ? 'border-green-500 focus:border-green-400'
+                                  : 'border-slate-700 focus:border-cyan-400'
+                              } text-white placeholder-gray-500 focus:outline-none transition-colors duration-300`}
+                              placeholder="Member name"
+                            />
+                            {teamMemberTouched[index]?.name && !teamMemberErrors[index]?.name && member.name && (
+                              <CheckCircle2 className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-green-500" />
+                            )}
+                          </div>
+                          {teamMemberTouched[index]?.name && teamMemberErrors[index]?.name && (
+                            <p className="mt-1 text-xs text-red-400 flex items-center gap-1">
+                              <AlertCircle className="w-3 h-3" />
+                              {teamMemberErrors[index].name}
+                            </p>
+                          )}
                         </div>
+
+                        {/* Member Roll No */}
                         <div>
-                          <input
-                            type="text"
-                            value={member.rollNo}
-                            onChange={(e) => updateTeamMember(index, 'rollNo', e.target.value)}
-                            className="w-full px-3 py-2 rounded-lg bg-slate-800/50 border border-slate-700 text-white placeholder-gray-500 focus:border-cyan-400 focus:outline-none transition-colors duration-300"
-                            placeholder="SE-23086"
-                          />
+                          <div className="relative">
+                            <input
+                              type="text"
+                              value={member.rollNo}
+                              onChange={(e) => updateTeamMember(index, 'rollNo', e.target.value)}
+                              onBlur={() => handleTeamMemberBlur(index, 'rollNo')}
+                              className={`w-full px-3 py-2 rounded-lg bg-slate-800/50 border ${
+                                teamMemberTouched[index]?.rollNo && teamMemberErrors[index]?.rollNo
+                                  ? 'border-red-500 focus:border-red-400'
+                                  : teamMemberTouched[index]?.rollNo && !teamMemberErrors[index]?.rollNo && member.rollNo
+                                  ? 'border-green-500 focus:border-green-400'
+                                  : 'border-slate-700 focus:border-cyan-400'
+                              } text-white placeholder-gray-500 focus:outline-none transition-colors duration-300`}
+                              placeholder="SE-23086"
+                            />
+                            {teamMemberTouched[index]?.rollNo && !teamMemberErrors[index]?.rollNo && member.rollNo && (
+                              <CheckCircle2 className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-green-500" />
+                            )}
+                          </div>
+                          {teamMemberTouched[index]?.rollNo && teamMemberErrors[index]?.rollNo && (
+                            <p className="mt-1 text-xs text-red-400 flex items-center gap-1">
+                              <AlertCircle className="w-3 h-3" />
+                              {teamMemberErrors[index].rollNo}
+                            </p>
+                          )}
                         </div>
                       </div>
                     </div>
