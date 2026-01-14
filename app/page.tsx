@@ -7,8 +7,8 @@ export default function Home() {
   return (
     <main className="w-full overflow-hidden">
       <Hero />
-      <About />
       <Sports />
+      <About />
       <Footer />
     </main>
   )

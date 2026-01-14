@@ -3,6 +3,7 @@
 import type React from "react"
 
 import { useState } from "react"
+import toast, { Toaster } from "react-hot-toast"
 import { Button } from "@/components/ui/button"
 
 export default function Registration() {
@@ -16,6 +17,7 @@ export default function Registration() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     console.log("Form submitted:", formData)
+    toast.success("Form Submitted Successfully")
     // Handle form submission
   }
 
@@ -64,7 +66,7 @@ export default function Registration() {
                 value={formData.email}
                 onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
                 className="w-full px-4 py-2 rounded-lg bg-slate-800/50 border border-slate-700 text-white placeholder-gray-500 focus:border-cyan-400 focus:outline-none transition-colors duration-300"
-                placeholder="your.email@college.edu"
+                placeholder="your.@cloud.neduet.edu.pk"
                 required
               />
             </div>
@@ -77,7 +79,7 @@ export default function Registration() {
                 value={formData.studentId}
                 onChange={(e) => setFormData((prev) => ({ ...prev, studentId: e.target.value }))}
                 className="w-full px-4 py-2 rounded-lg bg-slate-800/50 border border-slate-700 text-white placeholder-gray-500 focus:border-cyan-400 focus:outline-none transition-colors duration-300"
-                placeholder="Your student ID"
+                placeholder="SE-23086"
                 required
               />
             </div>

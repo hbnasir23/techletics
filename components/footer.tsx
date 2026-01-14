@@ -34,7 +34,7 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#registration" className="text-gray-400 hover:text-cyan-400 transition-colors">
+                <a href="#sports" className="text-gray-400 hover:text-cyan-400 transition-colors">
                   Register
                 </a>
               </li>
@@ -42,18 +42,44 @@ export default function Footer() {
           </div>
 
           {/* Contact */}
-          <div>
-            <h3 className="text-lg font-bold text-cyan-400 mb-4">Contact</h3>
-            <p className="text-gray-400 text-sm mb-2">Head of Software Engineering Department</p>
-            <p className="text-gray-500 text-xs">Email: info@techletics.edu</p>
-          </div>
+
+        <div>
+          <h3 className="text-lg font-bold text-cyan-400 mb-4">Contact</h3>
+
+          <p className="text-gray-500 text-xs">
+            Email:{" "}
+            <a
+              href="https://mail.google.com/mail/?view=cm&to=enayatrehman88@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-cyan-400 hover:underline"
+            >
+              enayatrehman88@gmail.com
+            </a>
+          </p>
+
+          <p className="text-gray-500 text-xs">
+            Email:{" "}
+            <a
+              href="https://mail.google.com/mail/?view=cm&to=hbnasir23@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-cyan-400 hover:underline"
+            >
+              hbnasir23@gmail.com
+            </a>
+          </p>
         </div>
+
+
+
 
         {/* Divider */}
         <div className="border-t border-slate-800 pt-8">
-          <p className="text-center text-gray-500 text-sm">© 2026 TECHLETICS. All rights reserved. Athletics 2.0</p>
+          <p className="text-center text-gray-500 text-sm">© 2026 TECHLETICS. All rights reserved. Techletics 2.0</p>
         </div>
       </div>
+    </div>
     </footer>
   )
 }
