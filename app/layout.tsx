@@ -8,9 +8,9 @@ const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "TECHLETICS - Athletics 2.0",
+  title: "TECHLETICS - Techletics 2.0",
   description:
-    "A futuristic college sports event blending technology and athletics. Organized by the Head of Software Engineering Department.",
+    "Sports Registration website. Organized by the Head of Software Engineering Department.",
 }
 
 export default function RootLayout({
