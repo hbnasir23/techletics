@@ -15,7 +15,7 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 h-screen flex flex-col items-center justify-center px-4 text-center">
         <div className="mb-8 inline-block px-4 py-2 rounded-full border border-cyan-500/50 bg-cyan-500/10 text-cyan-300 text-sm font-mono animate-fade-in">
-          Athletics 2.0
+          HELLOOOOO GUYS
         </div>
 
         <h1
