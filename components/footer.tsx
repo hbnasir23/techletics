@@ -43,7 +43,7 @@ export default function Footer() {
 
           {/* Contact */}
 
-        <div>
+        {/* <div>
           <h3 className="text-lg font-bold text-cyan-400 mb-4">Contact</h3>
 
           <p className="text-gray-500 text-xs">
@@ -69,8 +69,31 @@ export default function Footer() {
               hbnasir23@gmail.com
             </a>
           </p>
-        </div>
+        </div> */}
 
+        <div>
+          <h3 className="text-lg font-bold text-cyan-400 mb-4">Contact</h3>
+
+          <p className="text-gray-500 text-xs">
+            Email:{" "}
+            <a
+              href="mailto:enayatrehman88@gmail.com"
+              className="text-cyan-400 hover:underline"
+            >
+              enayatrehman88@gmail.com
+            </a>
+          </p>
+
+          <p className="text-gray-500 text-xs">
+            Email:{" "}
+            <a
+              href="mailto:hbnasir23@gmail.com"
+              className="text-cyan-400 hover:underline"
+            >
+              hbnasir23@gmail.com
+            </a>
+          </p>
+        </div>
 
 
 

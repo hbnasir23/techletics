@@ -28,7 +28,7 @@ export default function Hero() {
           TECHLETICS 2.0
         </div>
   
-      <h1 className="font-extrabold text-6xl md:text-8xl lg:text-[clamp(2rem,10vw,8rem)] whitespace-nowrap relative mx-auto select-none cursor-pointer mb-6">
+      <h1 className="font-extrabold text-4xl md:text-8xl lg:text-[clamp(2rem,10vw,8rem)] whitespace-nowrap relative mx-auto select-none cursor-pointer mb-6">
         <span className="bg-gradient-to-r from-cyan-400 to-magenta-400 bg-clip-text text-transparent"
               style={{
                 WebkitTextStroke: '2px cyan'
