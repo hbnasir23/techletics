@@ -11,24 +11,6 @@ export const metadata: Metadata = {
   title: "TECHLETICS - Athletics 2.0",
   description:
     "A futuristic college sports event blending technology and athletics. Organized by the Head of Software Engineering Department.",
-  generator: "v0.app",
-  icons: {
-    icon: [
-      {
-        url: "/icon-light-32x32.png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/icon-dark-32x32.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-      },
-    ],
-    apple: "/apple-icon.png",
-  },
 }
 
 export default function RootLayout({
