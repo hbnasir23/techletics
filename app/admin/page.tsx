@@ -8,22 +8,41 @@ import toast, { Toaster } from 'react-hot-toast'
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL
 const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
+// const ADMIN_CREDENTIALS = [
+//   {
+//     email: process.env.NEXT_PUBLIC_ADMIN_EMAIL_1,
+//     password: process.env.NEXT_PUBLIC_ADMIN_PASSWORD_1,
+//   },
+//   {
+//     email: process.env.NEXT_PUBLIC_ADMIN_EMAIL_2,
+//     password: process.env.NEXT_PUBLIC_ADMIN_PASSWORD_2,
+//   },
+//   {
+//     email: process.env.NEXT_PUBLIC_ADMIN_EMAIL_3,
+//     password: process.env.NEXT_PUBLIC_ADMIN_PASSWORD_3,
+//   },
+//   {
+//     email: process.env.NEXT_PUBLIC_ADMIN_EMAIL_4,
+//     password: process.env.NEXT_PUBLIC_ADMIN_PASSWORD_4,
+//   },
+// ]
+
 const ADMIN_CREDENTIALS = [
   {
-    email: process.env.NEXT_PUBLIC_ADMIN_EMAIL_1,
-    password: process.env.NEXT_PUBLIC_ADMIN_PASSWORD_1,
+    email: "enayat@",
+    password: "e86",
   },
   {
-    email: process.env.NEXT_PUBLIC_ADMIN_EMAIL_2,
-    password: process.env.NEXT_PUBLIC_ADMIN_PASSWORD_2,
+    email: "haris@",
+    password: "e84",
   },
   {
-    email: process.env.NEXT_PUBLIC_ADMIN_EMAIL_3,
-    password: process.env.NEXT_PUBLIC_ADMIN_PASSWORD_3,
+    email: "affan@",
+    password: "e58",
   },
   {
-    email: process.env.NEXT_PUBLIC_ADMIN_EMAIL_4,
-    password: process.env.NEXT_PUBLIC_ADMIN_PASSWORD_4,
+    email: "anas@",
+    password: "e87",
   },
 ]
 
