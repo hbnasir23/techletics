@@ -547,20 +547,61 @@ export default function SportRegistrationModal({ sport, isOpen, onClose }: Sport
     return true
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!validateForm()) {
       return
     }
 
-    const submissionData = {
-      sport: sport,
-      captain: formData,
-      teamMembers: sport.type !== 'solo' ? teamMembers : [],
-    }
+    const loadingToast = toast.loading('Registering...')
 
-    console.log("Form submitted:", submissionData)
-    toast.success("Registration successful! 🎉")
-    onClose()
+    try {
+      const submissionData = {
+        sportName: sport.name,
+        sportType: sport.type,
+        section: formData.section,
+        teamName: formData.teamName || undefined,
+        captain: {
+          name: formData.captainName,
+          email: formData.captainEmail,
+          rollNo: formData.captainRollNo,
+          phone: formData.captainPhone,
+        },
+        teamMembers: sport.type !== 'solo' ? teamMembers : undefined,
+      }
+
+      console.log("Submitting registration:", submissionData)
+
+      const response = await fetch('/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(submissionData),
+      })
+
+      const data = await response.json()
+
+      toast.dismiss(loadingToast)
+
+      if (!response.ok) {
+        toast.error(data.error || 'Registration failed')
+        console.error('Registration error:', data)
+        return
+      }
+
+      console.log('Registration successful:', data)
+      toast.success('Registration successful! 🎉')
+      
+      // Reset form and close modal
+      resetForm()
+      setTimeout(() => {
+        onClose()
+      }, 1500)
+    } catch (error) {
+      toast.dismiss(loadingToast)
+      console.error('Request error:', error)
+      toast.error('An unexpected error occurred')
+    }
   }
 
   const addTeamMember = () => {
