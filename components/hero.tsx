@@ -3,6 +3,8 @@ import Lightning from './Lightning';
 export default function Hero() {
   return (
     <section className="relative min-h-screen w-full overflow-hidden bg-black">
+
+      
       {/* Lightning Background - positioned absolutely behind everything */}
       <div className="absolute inset-0 z-0">
         <Lightning />
