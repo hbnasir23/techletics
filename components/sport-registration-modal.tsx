@@ -364,7 +364,7 @@ export default function SportRegistrationModal({ sport, isOpen, onClose }: Sport
 
       case 'section':
         if (!value) return 'Section is required'
-        const sectionRegex = /^(FESE|SESE|TESE|FYP)-[A-B]$/
+        const sectionRegex = /^(FESE|SESE|TESE|BESE)-[A-B]$/
         if (!sectionRegex.test(value)) return 'Must match format: FESE-A or FESE-B'
         return undefined
 
