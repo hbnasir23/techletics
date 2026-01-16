@@ -23,8 +23,7 @@ export default function Rules() {
     {
       sport: "Football Pickup",
       rules: [
-        "8 total players (5 playing + 3 substitutes)",
-        "One team per section",
+        "8 total players (6 playing + 2 substitutes)",
         "Standard football rules with modifications for safety",
       ],
     },

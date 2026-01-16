@@ -1,198 +1,3 @@
-// "use client"
-
-// import { useState } from "react"
-// import { Button } from "@/components/ui/button"
-// import SportRegistrationModal from "@/components/sport-registration-modal"
-// import RulesModal from "@/components/rules-modal"
-
-// interface Sport {
-//   id: string
-//   name: string
-//   icon: string
-//   description: string
-// }
-
-// const MALE_SPORTS: Sport[] = [
-//   { id: "cricket", name: "Cricket", icon: "🏏", description: "Fast-paced team sport combining strategy and skill" },
-//   { id: "futsal", name: "Futsal", icon: "⚽", description: "Indoor football with fast-paced action and teamwork" },
-//   {
-//     id: "volleyball",
-//     name: "Volleyball",
-//     icon: "🏐",
-//     description: "Dynamic team sport requiring agility and communication",
-//   },
-//   {
-//     id: "badminton-singles",
-//     name: "Badminton Singles",
-//     icon: "🏸",
-//     description: "Individual competition with speed and precision",
-//   },
-//   {
-//     id: "badminton-doubles",
-//     name: "Badminton Doubles",
-//     icon: "👥",
-//     description: "Doubles competition testing coordination and teamwork",
-//   },
-//   {
-//     id: "table-tennis-singles",
-//     name: "Table Tennis Singles",
-//     icon: "🏓",
-//     description: "Fast-paced individual sport requiring precision and reflexes",
-//   },
-//   {
-//     id: "relay-race",
-//     name: "Relay Race",
-//     icon: "🏃",
-//     description: "Team sprint race combining speed and coordination",
-//   },
-//   { id: "tug-of-war", name: "Tug of War", icon: "🔗", description: "Team strength competition requiring coordination" },
-// ]
-
-// const FEMALE_SPORTS: Sport[] = [
-//   {
-//     id: "throwball",
-//     name: "Throwball",
-//     icon: "🎯",
-//     description: "Team sport combining throwing accuracy and strategy",
-//   },
-//   {
-//     id: "badminton-singles",
-//     name: "Badminton Singles",
-//     icon: "🏸",
-//     description: "Individual competition with speed and precision",
-//   },
-//   {
-//     id: "badminton-doubles",
-//     name: "Badminton Doubles",
-//     icon: "👥",
-//     description: "Doubles competition testing coordination and teamwork",
-//   },
-//   {
-//     id: "table-tennis-singles",
-//     name: "Table Tennis Singles",
-//     icon: "🏓",
-//     description: "Fast-paced individual sport requiring precision and reflexes",
-//   },
-//   {
-//     id: "relay-race",
-//     name: "Relay Race",
-//     icon: "🏃",
-//     description: "Team sprint race combining speed and coordination",
-//   },
-//   { id: "tug-of-war", name: "Tug of War", icon: "🔗", description: "Team strength competition requiring coordination" },
-// ]
-
-// export default function Sports() {
-//   const [gender, setGender] = useState<"male" | "female">("male")
-//   const [selectedSport, setSelectedSport] = useState<Sport | null>(null)
-//   const [showRegisterModal, setShowRegisterModal] = useState(false)
-//   const [showRulesModal, setShowRulesModal] = useState(false)
-
-//   const sports = gender === "male" ? MALE_SPORTS : FEMALE_SPORTS
-
-//   const handleRegister = (sport: Sport) => {
-//     setSelectedSport(sport)
-//     setShowRegisterModal(true)
-//   }
-
-//   const handleViewRules = (sport: Sport) => {
-//     setSelectedSport(sport)
-//     setShowRulesModal(true)
-//   }
-
-//   return (
-//     <section id="sports" className="relative py-20 md:py-32 px-4 bg-background">
-//       <div className="max-w-6xl mx-auto">
-//         <h2 className="text-4xl md:text-5xl font-bold mb-8 text-center">
-//           Featured <span className="text-cyan-400">Sports</span>
-//         </h2>
-
-//         <div className="flex justify-center mb-12">
-//           <div className="inline-flex bg-slate-900/50 border border-slate-700 rounded-lg p-1">
-//             <button
-//               onClick={() => setGender("male")}
-//               className={`px-6 py-2 rounded-md font-semibold transition-all duration-300 ${
-//                 gender === "male" ? "bg-cyan-500 text-black glow-cyan" : "text-gray-400 hover:text-gray-300"
-//               }`}
-//             >
-//               Male
-//             </button>
-//             <button
-//               onClick={() => setGender("female")}
-//               className={`px-6 py-2 rounded-md font-semibold transition-all duration-300 ${
-//                 gender === "female" ? "bg-magenta-500 text-white glow-magenta" : "text-gray-400 hover:text-gray-300"
-//               }`}
-//             >
-//               Female
-//             </button>
-//           </div>
-//         </div>
-
-//         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-//           {sports.map((sport) => (
-//             <div
-//               key={sport.id}
-//               className="group p-6 rounded-lg border border-slate-700 bg-slate-900/50 backdrop-blur-sm hover:border-cyan-400/50 transition-all duration-300 hover:scale-105 hover:glow-cyan flex flex-col"
-//             >
-//               {/* Icon */}
-//               <div className="text-5xl mb-4">{sport.icon}</div>
-
-//               {/* Sport Name */}
-//               <h3 className="text-xl font-bold text-cyan-300 mb-2">{sport.name}</h3>
-
-//               {/* Description */}
-//               <p className="text-gray-400 text-sm leading-relaxed mb-6 flex-grow">{sport.description}</p>
-
-//               {/* Animated underline */}
-//               <div className="mb-6 h-1 w-0 group-hover:w-full bg-gradient-to-r from-cyan-500 to-magenta-500 transition-all duration-300" />
-
-//               {/* Action Buttons */}
-//               <div className="flex gap-3">
-//                 <Button
-//                   variant="outline"
-//                   size="sm"
-//                   className="flex-1 border-magenta-400/50 text-magenta-300 hover:bg-magenta-500/10 bg-transparent"
-//                   onClick={() => handleViewRules(sport)}
-//                 >
-//                   View Rules
-//                 </Button>
-//                 <Button
-//                   size="sm"
-//                   className="flex-1 bg-cyan-500 hover:bg-cyan-600 text-black font-bold glow-cyan"
-//                   onClick={() => handleRegister(sport)}
-//                 >
-//                   Register
-//                 </Button>
-//               </div>
-//             </div>
-//           ))}
-//         </div>
-//       </div>
-
-//       {selectedSport && (
-//         <>
-//           <SportRegistrationModal
-//             sport={selectedSport}
-//             isOpen={showRegisterModal}
-//             onClose={() => {
-//               setShowRegisterModal(false)
-//               setSelectedSport(null)
-//             }}
-//           />
-//           <RulesModal
-//             sport={selectedSport}
-//             isOpen={showRulesModal}
-//             onClose={() => {
-//               setShowRulesModal(false)
-//               setSelectedSport(null)
-//             }}
-//           />
-//         </>
-//       )}
-//     </section>
-//   )
-// }
-
 "use client"
 
 import { useState } from "react"
@@ -227,7 +32,7 @@ const MALE_SPORTS: Sport[] = [
     rules: `CRICKET - 7-A-SIDE FORMAT
 
 Team Composition: 
-• Squad size: 8 players  
+• Squad size: 7 players  
 • Players on field: 7
 
 Match Duration:
@@ -271,11 +76,11 @@ General Rules:
     name: "Futsal", 
     icon: "⚽", 
     type: "team",
-    teamSize: 9,
-    maxSubstitutes: 3,
+    teamSize: 8,
+    maxSubstitutes: 2,
     totalTeams: 12,
     maxTeams: 16,
-    description: "Fast-paced indoor football",
+    description: "Venue: BasketBall Court",
     rules: `FUTSAL RULES & GUIDELINES
 
 Team Composition:
@@ -285,42 +90,36 @@ Team Composition:
 • Substitution only during stoppage and with referee permission
 
 Match Duration:
-• Two halves of 15 minutes each
-• 5-minute halftime break
-• Running clock (stops only for injuries/time-outs)
-• Each team gets 1 timeout of 1 minute per half
-
-Playing Surface & Ball:
-• Indoor court with futsal-specific ball (size 4, low bounce)
-• Goal size: 3m × 2m
-• No offside rule
+• Group Stage / Semi-Final: Two halves of 10 minutes each  
+• Final: Two halves of 15 minutes each  
+• Halftime break: 3 minutes for Group Stage / Semi-Final, 5 minutes for Final  
+• Running clock (stops only for injuries or time-outs)  
+• Each team is allowed 1 timeout of 1 minute per half
 
 Fouls & Free Kicks:
 • First 5 fouls per half: Indirect free kick with defensive wall
 • 6th foul onwards: Direct free kick from 10m mark (no wall)
 • Accumulated fouls reset at halftime
 • Yellow card: Caution, player continues
-• Red card: Player sent off, team plays with one less player for 2 minutes or until goal conceded
+• Red card: Player sent off, team plays with one less player for 1 half
 
 Goalkeeper Rules:
 • Cannot handle ball in own half after teammate's pass (results in indirect free kick)
 • 4-second rule: Must release ball within 4 seconds of possession
-• Can score in opponent's goal
+• Cannot score in opponent's goal
 • May act as outfield player
 
 Kick-Ins & Restarts:
 • Ball out of play: Kick-in (not throw-in) from touchline
-• Kick-in must be taken within 4 seconds
+• Kick-in must be taken within 10 seconds
 • Opponent must be 5m away
 • Corner kicks and goal kicks as per FIFA futsal rules
 
 Scoring:
 • Goal scored when entire ball crosses goal line between posts
-• Ball can be played at any height
 • Goalkeeper cannot score by throwing ball directly
 
 Prohibited Actions:
-• Slide tackles (except goalkeeper in penalty area)
 • Dangerous play
 • Holding, pushing, or charging opponent
 • Playing with raised foot near opponent's head
@@ -345,24 +144,28 @@ Discipline & Sportsmanship:
 
 Team Composition:
 • 6 players on court per team
-• Maximum 2 substitutes
 
 Match Format:
-• Best of 3 sets
-• First 2 sets: First team to 25 points (must win by 2)
-• 3rd set (if needed): First team to 15 points (must win by 2)
-• Rally scoring: Point awarded on every serve
+• Knockout: Game point at 15  
+  - In case of a tie: Team must score **2 consecutive points** to win  
+• Semi-Final: Game point at 20  
+  - In case of a tie: Both teams’ points reset to **15**, continue until a winner is decided  
+• Final: Game point at 25  
+  - In case of a tie: Both teams’ points reset to **20**, continue until a winner is decided  
 
-Service:
-• Serve from behind end line
-• Ball must clear net without touching it
-• Serve hits net but goes over: Play continues (let serve)
-• Server gets one attempt only
+Service Rules:
+• Serve from behind the **service line** (blue line)  
+• Ball must clear the net without touching it  
+• If the serve hits the net but goes over, the play continues (let serve)  
+• Server is allowed only **one attempt**  
+• Court boundary lines are **white**; the blue line marks the service area
 
 Playing the Ball:
-• Maximum 3 touches per side (block doesn't count as touch)
+• Each team can touch the ball a **maximum of 3 times** before sending it over the net  
+• Blocks by front-row players at the net do not count as one of the 3 touches
 • Same player cannot hit ball twice consecutively (except after block)
-• Ball must be hit, not caught or thrown
+• You **cannot catch, carry, or throw** the ball.  
+• The ball can be touched with any part of the body (including feet). 
 • Ball can be played with any part of body
 • Ball touching boundary line is IN
 
