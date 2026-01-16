@@ -2,13 +2,7 @@
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
-
-interface Sport {
-  id: string
-  name: string
-  icon: string
-  description: string
-}
+import { Sport } from "./sports"
 
 interface RulesModalProps {
   sport: Sport
@@ -34,7 +28,7 @@ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolor
         </DialogHeader>
 
         <div className="space-y-4 py-4">
-          <div className="text-gray-300 leading-relaxed whitespace-pre-wrap text-sm">{loremIpsum}</div>
+          <div className="text-gray-300 leading-relaxed whitespace-pre-wrap text-sm">{sport.rules}</div>
         </div>
 
         <div className="flex justify-end gap-3 pt-4 border-t border-slate-700">

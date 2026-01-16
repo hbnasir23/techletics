@@ -279,7 +279,7 @@ import { Button } from "@/components/ui/button"
 import { AlertCircle, Plus, Trash2, X, CheckCircle2 } from "lucide-react"
 import toast from "react-hot-toast"
 
-interface Sport {
+export interface Sport {
   id: string
   name: string
   icon: string
