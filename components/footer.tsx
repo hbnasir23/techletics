@@ -114,6 +114,13 @@ export default function Footer() {
         <div className="border-t border-slate-800 pt-8">
           <p className="text-center text-gray-500 text-sm">© 2026 TECHLETICS. All rights reserved. Techletics 2.0</p>
         </div>
+        <p className="text-center text-white text-[10px] mt-3 opacity-100 md:opacity-60 md:hover:opacity-100 transition">
+          <span className="text-white">•</span>
+          {" "}Developed by Enayat Ur Rehman & Haris Bin Nasir{" "}
+          <span className="text-white">•</span>
+        </p>
+
+
     </div>
     </footer>
   )
