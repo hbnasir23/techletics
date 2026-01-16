@@ -94,7 +94,7 @@ export default function Footer() {
   <p className="text-gray-500 text-xs">
     
     <a
-      href="https://wa.me/923318115835"
+      href="https://wa.me/923318115853"
       target="_blank"
       rel="noopener noreferrer"
       className="text-cyan-400 hover:underline"
