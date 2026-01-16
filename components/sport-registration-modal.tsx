@@ -333,7 +333,7 @@ export default function SportRegistrationModal({ sport, isOpen, onClose }: Sport
   const [teamMemberTouched, setTeamMemberTouched] = useState<Array<{ name?: boolean; rollNo?: boolean }>>([])
 
   // Student types for section validation
-  const studentTypes = ['FESE', 'SESE', 'TESE', 'FYP']
+  const studentTypes = ['FESE', 'SESE', 'TESE', 'BESE']
 
   // Reset form when modal opens with new sport
   useEffect(() => {
@@ -364,7 +364,7 @@ export default function SportRegistrationModal({ sport, isOpen, onClose }: Sport
 
       case 'section':
         if (!value) return 'Section is required'
-        const sectionRegex = /^(FESE|SESE|TESE|FYP)-[A-B]$/
+        const sectionRegex = /^(FESE|SESE|TESE|BESE)-[A-B]$/
         if (!sectionRegex.test(value)) return 'Must match format: FESE-A or FESE-B'
         return undefined
 
@@ -916,7 +916,7 @@ export default function SportRegistrationModal({ sport, isOpen, onClose }: Sport
                       </p>
                     )}
                     <p className="mt-1 text-xs text-gray-500">
-                      Valid types: FESE, SESE, TESE, FYP (Section: A or B)
+                      Valid types: FESE, SESE, TESE, BESE (Section: A or B)
                     </p>
                   </div>
 

@@ -1,4 +1,5 @@
 "use client"
+import Link from "next/link"
 
 export default function Footer() {
   return (
@@ -93,12 +94,22 @@ export default function Footer() {
               hbnasir23@gmail.com
             </a>
           </p>
+
+          <div className="text-md font-bold text-red-800 mb-6">
+            <Link href='/admin'>Login As Admin</Link>
+          </div>
+
+
+
         </div>
+
+        
 
 
 
        
       </div>
+      
        {/* Divider */}
         <div className="border-t border-slate-800 pt-8">
           <p className="text-center text-gray-500 text-sm">© 2026 TECHLETICS. All rights reserved. Techletics 2.0</p>
