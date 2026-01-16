@@ -18,7 +18,7 @@ export default function Rules() {
     },
     {
       sport: "Volleyball",
-      rules: ["Exactly 6 players per team", "Standard volleyball rules", "Best of 3 sets format"],
+      rules: ["Exactly 6 players per team", "Standard volleyball rules", "15 points per game"],
     },
     {
       sport: "Football Pickup",

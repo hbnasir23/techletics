@@ -223,48 +223,48 @@ const MALE_SPORTS: Sport[] = [
     // maxSubstitutes: 1,
     totalTeams: 8,
     maxTeams: 16,
-    description: "Strategy meets skill",
-    rules: `**CRICKET - 7-A-SIDE FORMAT**
+    description: "Venue: Tennis Court",
+    rules: `CRICKET - 7-A-SIDE FORMAT
 
-**Team Composition:**
-• 7 players per team on field
-• Maximum 1 substitute allowed
-• All players must bowl (1 over each, maximum 7 overs per innings)
+Team Composition: 
+• Squad size: 8 players  
+• Players on field: 7
 
-**Match Duration:**
-• 7 overs per innings
+Match Duration:
+• Group-Stage: 4 overs per innings  
+• Semi-finals: 5 overs per innings  
+• Final: 6 overs per innings  
 • Each over consists of 6 legal deliveries
-• Time limit: 60 minutes per match
 
-**Scoring:**
+Scoring:
 • Standard cricket scoring applies
 • Boundaries: 4 runs (ball crosses boundary after bouncing)
 • Six: 6 runs (ball crosses boundary without bouncing)
 • Wide/No-Ball: 1 extra run + ball to be re-bowled
 
-**Bowling Rules:**
-• Each player must bowl 1 over (mandatory)
-• No player can bowl more than 1 over
-• Bowling order must be declared before match
-• Wide ball: Ball passing outside the wide line
+Bowling Rules:
+• Group Stage: No player can bowl more than 1 over  
+• Semi-finals: Only 1 player is allowed to bowl 2 overs  
+• Final: Up to 2 players can bowl 2 overs each  
+• Wide ball: Ball passing outside the wide line  
 • No-ball: Overstepping, waist-high full toss, or bouncer above shoulder
+• Sledging or any interruption during ball delivery is considered a **No-Ball**
 
-**Batting Rules:**
-• Retirement: Batsman must retire at 25 runs (can return if wickets fall)
-• Last man standing: Innings continues until last batsman is out
-• Run out: Both batsmen can be run out
+Batting Rules:
+• No Last Man standing - Innings ends when only 1 batsman remains.
+• Declaration: If the batting team declares, the batsman at the crease will be considered out.
 
-**Dismissals:**
-• Bowled, Caught, LBW, Run Out, Stumped, Hit Wicket
-• Caught behind the boundary line: OUT
+Dismissals:
+• Bowled, Caught, Run Out, Hit Wicket
 • Obstructing the field: OUT
 
-**General Rules:**
+General Rules:
 • Toss winner chooses to bat or bowl
-• 10-minute break between innings
+• No break between innings
 • Umpire's decision is final
 • Fair play and sportsmanship mandatory
-• Any dangerous or unfair play will result in penalty/dismissal`
+• Any dangerous or unfair play will result in penalty/dismissal
+• All other standard cricket rules are applicable unless specifically modified above`
   },
   { 
     id: "futsal", 
@@ -276,56 +276,56 @@ const MALE_SPORTS: Sport[] = [
     totalTeams: 12,
     maxTeams: 16,
     description: "Fast-paced indoor football",
-    rules: `**FUTSAL RULES & GUIDELINES**
+    rules: `FUTSAL RULES & GUIDELINES
 
-**Team Composition:**
+Team Composition:
 • 6 players per team (1 goalkeeper + 5 outfield players)
 • Maximum 2 substitutes
 • Rolling substitutions allowed (unlimited)
 • Substitution only during stoppage and with referee permission
 
-**Match Duration:**
+Match Duration:
 • Two halves of 15 minutes each
 • 5-minute halftime break
 • Running clock (stops only for injuries/time-outs)
 • Each team gets 1 timeout of 1 minute per half
 
-**Playing Surface & Ball:**
+Playing Surface & Ball:
 • Indoor court with futsal-specific ball (size 4, low bounce)
 • Goal size: 3m × 2m
 • No offside rule
 
-**Fouls & Free Kicks:**
+Fouls & Free Kicks:
 • First 5 fouls per half: Indirect free kick with defensive wall
 • 6th foul onwards: Direct free kick from 10m mark (no wall)
 • Accumulated fouls reset at halftime
 • Yellow card: Caution, player continues
 • Red card: Player sent off, team plays with one less player for 2 minutes or until goal conceded
 
-**Goalkeeper Rules:**
+Goalkeeper Rules:
 • Cannot handle ball in own half after teammate's pass (results in indirect free kick)
 • 4-second rule: Must release ball within 4 seconds of possession
 • Can score in opponent's goal
 • May act as outfield player
 
-**Kick-Ins & Restarts:**
+Kick-Ins & Restarts:
 • Ball out of play: Kick-in (not throw-in) from touchline
 • Kick-in must be taken within 4 seconds
 • Opponent must be 5m away
 • Corner kicks and goal kicks as per FIFA futsal rules
 
-**Scoring:**
+Scoring:
 • Goal scored when entire ball crosses goal line between posts
 • Ball can be played at any height
 • Goalkeeper cannot score by throwing ball directly
 
-**Prohibited Actions:**
+Prohibited Actions:
 • Slide tackles (except goalkeeper in penalty area)
 • Dangerous play
 • Holding, pushing, or charging opponent
 • Playing with raised foot near opponent's head
 
-**Discipline & Sportsmanship:**
+Discipline & Sportsmanship:
 • Respect referee decisions
 • No arguing or dissent
 • Fair play and sporting conduct required at all times
@@ -341,70 +341,54 @@ const MALE_SPORTS: Sport[] = [
     totalTeams: 10,
     maxTeams: 12,
     description: "Agility and teamwork",
-    rules: `**VOLLEYBALL RULES**
+    rules: `VOLLEYBALL RULES
 
-**Team Composition:**
+Team Composition:
 • 6 players on court per team
 • Maximum 2 substitutes
-• Substitutions allowed during dead ball situations
-• Players rotate clockwise after winning serve
 
-**Match Format:**
+Match Format:
 • Best of 3 sets
 • First 2 sets: First team to 25 points (must win by 2)
 • 3rd set (if needed): First team to 15 points (must win by 2)
 • Rally scoring: Point awarded on every serve
 
-**Rotation & Service:**
-• Players rotate positions clockwise when team wins serve
+Service:
 • Serve from behind end line
 • Ball must clear net without touching it
 • Serve hits net but goes over: Play continues (let serve)
 • Server gets one attempt only
-• Rotation order must be maintained throughout set
 
-**Playing the Ball:**
+Playing the Ball:
 • Maximum 3 touches per side (block doesn't count as touch)
 • Same player cannot hit ball twice consecutively (except after block)
 • Ball must be hit, not caught or thrown
 • Ball can be played with any part of body
 • Ball touching boundary line is IN
 
-**Net Rules:**
+Net Rules:
 • Players cannot touch net during play
 • Reaching over net to attack allowed only after opponent's attack
 • Blocking opponent's serve is NOT allowed
 • Players cannot cross centerline completely (foot/hand over is OK)
 
-**Scoring:**
+Scoring:
 • Rally scoring system (point on every serve)
 • Team must win by 2 points
 • No cap on maximum points
 
-**Positions:**
-• Front row: 3 players (can attack and block)
-• Back row: 3 players (can attack behind 3m line only)
-• Libero (if used): Defensive specialist in different colored jersey
-
-**Faults:**
+Faults:
 • Four hits on one side
 • Double contact by same player
 • Ball lands out of bounds
 • Net violation
 • Foot fault on serve
 • Reaching under net and interfering with opponent
-• Back row player attacking in front of 3m line
 
-**Timeouts:**
-• Each team gets 2 timeouts per set (30 seconds each)
-• Technical timeout at 8th and 16th points in sets 1 and 2
-
-**Conduct:**
+Conduct:
 • Respect referee decisions
 • No unsportsmanlike conduct
 • Disputes resolved by team captain only
-• Yellow card: Warning
-• Red card: Point penalty
 • Repeated violations: Player expulsion`
   },
   {
@@ -415,9 +399,9 @@ const MALE_SPORTS: Sport[] = [
     totalTeams: 24,
     maxTeams: 32,
     description: "Speed and precision",
-    rules: `**BADMINTON SINGLES RULES**
+    rules: `BADMINTON SINGLES RULES
 
-**Match Format:**
+Match Format:
 • Best of 3 games
 • Each game: First to 21 points
 • Must win by 2 points
@@ -425,12 +409,12 @@ const MALE_SPORTS: Sport[] = [
 • 60-second rest between games
 • 2-minute rest between 2nd and 3rd games
 
-**Scoring System:**
+Scoring System:
 • Rally point scoring (point on every serve)
 • Winner of rally scores point and serves next
 • Player winning game serves first in next game
 
-**Service Rules:**
+Service Rules:
 • Serve diagonally to opponent's service court
 • Server and receiver must stand in diagonally opposite service courts
 • Feet must remain stationary until serve is struck
@@ -440,25 +424,25 @@ const MALE_SPORTS: Sport[] = [
 • If score is EVEN: Serve from RIGHT service court
 • If score is ODD: Serve from LEFT service court
 
-**Court Usage:**
+Court Usage:
 • Service courts: Narrower (singles sideline)
 • After service: Full court width (including doubles sideline)
 • Singles sidelines apply during rallies
 
-**During Rally:**
+During Rally:
 • Shuttle must pass over net
 • Shuttle cannot touch ceiling or walls
 • Player cannot touch net with racket or body
 • Shuttle cannot be hit twice consecutively by same player
 • Shuttle landing on line is IN
 
-**Lets (Replay):**
+Lets (Replay):
 • Shuttle caught in/on net during service
 • Service receiver not ready
 • Unforeseen or accidental situation
 • Shuttle disintegrates during play
 
-**Faults (Opponent Wins Rally):**
+Faults (Opponent Wins Rally):
 • Shuttle lands outside boundary lines
 • Shuttle doesn't cross net
 • Shuttle touches player's body or clothing
@@ -468,17 +452,17 @@ const MALE_SPORTS: Sport[] = [
 • Obstructing opponent
 • Service faults (illegal service)
 
-**Interval & Change of Ends:**
+Interval & Change of Ends:
 • Change ends after each game
 • In 3rd game: Change ends when leading player reaches 11 points
 • 60-second interval when leading player reaches 11 points
 
-**Equipment:**
+Equipment:
 • Approved BWF feather shuttlecock
 • Racket meeting BWF specifications
 • Proper court shoes (non-marking)
 
-**Conduct:**
+Conduct:
 • No coaching during match
 • No abuse of equipment
 • Respect umpire decisions
@@ -495,9 +479,9 @@ const MALE_SPORTS: Sport[] = [
     totalTeams: 14,
     maxTeams: 16,
     description: "Coordination challenge",
-    rules: `**BADMINTON DOUBLES RULES**
+    rules: `BADMINTON DOUBLES RULES
 
-**Match Format:**
+Match Format:
 • Best of 3 games
 • Each game: First to 21 points
 • Must win by 2 points
@@ -505,13 +489,13 @@ const MALE_SPORTS: Sport[] = [
 • 60-second rest between games
 • 2-minute rest between 2nd and 3rd games
 
-**Scoring System:**
+Scoring System:
 • Rally point scoring (point on every serve)
 • Winning pair scores point and serves next
 • Same server continues serving until pair loses rally
 • Pair winning game serves first in next game
 
-**Service Rules - CRITICAL FOR DOUBLES:**
+Service Rules - CRITICAL FOR DOUBLES:
 • Serve diagonally to opponent's service court
 • Server, partner, receiver, and receiver's partner must stay in respective courts
 • Feet must remain stationary until serve is struck
@@ -520,19 +504,19 @@ const MALE_SPORTS: Sport[] = [
 • If serving side's score is EVEN (0, 2, 4...): Serve from RIGHT court
 • If serving side's score is ODD (1, 3, 5...): Serve from LEFT court
 
-**Service Sequence (Important):**
+Service Sequence (Important):
 • At start of game: Serving side gets only ONE service
 • After first rally: Winning side serves
 • Only player in correct service court may serve/receive
 • Partners switch service courts after winning rally while serving
 • Partners DO NOT switch when receiving side wins rally
 
-**Court Boundaries:**
+Court Boundaries:
 • Service courts: Shorter (inner back line) and wider (outer sideline)
 • After service: Full court including outer sideline and back tramline
 • Doubles sidelines and back lines apply during rallies
 
-**During Rally:**
+During Rally:
 • Either partner may hit the shuttle
 • Shuttle cannot be hit twice consecutively by same pair
 • Partners can hit shuttle alternately or either can hit
@@ -540,12 +524,12 @@ const MALE_SPORTS: Sport[] = [
 • Players cannot touch net with racket or body
 • Shuttle landing on line is IN
 
-**Rotation of Service:**
+Rotation of Service:
 • When serving side wins rally: Same server serves from alternate court
 • When receiving side wins rally: They become serving side, no position change
 • Player who was in right court serves first for new serving side
 
-**Faults:**
+Faults:
 • Service faults: Wrong court, illegal service motion, foot fault
 • Shuttle lands outside boundaries during service
 • Shuttle doesn't cross net
@@ -555,23 +539,23 @@ const MALE_SPORTS: Sport[] = [
 • Touching net during play
 • Double hit by same player
 
-**Interval & Change of Ends:**
+Interval & Change of Ends:
 • Change ends after each game
 • In 3rd game: Change ends when leading pair reaches 11 points
 • 60-second interval when leading pair reaches 11 points
 
-**Communication & Strategy:**
+Communication & Strategy:
 • Partners may communicate during play
 • Front-back or side-by-side formations allowed
 • Team strategy and positioning is key
 
-**Lets (Replay):**
+Lets (Replay):
 • Shuttle caught in/on net during service
 • Receiver not ready
 • Accidental or unforeseen situation
 • Shuttle disintegrates during play
 
-**Conduct:**
+Conduct:
 • No coaching during match
 • Partners must work as team
 • Respect umpire decisions
@@ -587,16 +571,16 @@ const MALE_SPORTS: Sport[] = [
     totalTeams: 20,
     maxTeams: 32,
     description: "Lightning-fast reflexes",
-    rules: `**TABLE TENNIS SINGLES RULES**
+    rules: `TABLE TENNIS SINGLES RULES
 
-**Match Format:**
+Match Format:
 • Best of 5 games (first to win 3 games)
 • Each game: First to 11 points
 • Must win by 2 points
 • If score reaches 10-10: Play continues until one player leads by 2
 • 1-minute rest between games
 
-**Service Rules:**
+Service Rules:
 • Service alternates every 2 points (not every 5 points)
 • At 10-10 (deuce): Service alternates every point
 • Ball must be visible to opponent before service
@@ -606,32 +590,32 @@ const MALE_SPORTS: Sport[] = [
 • Service must be diagonal (no straight serves)
 • Ball touching net during service but landing correctly: LET (replay)
 
-**Scoring:**
+Scoring:
 • Rally point scoring (point on every serve)
 • Winner of rally scores point
 • Player losing previous point serves next (unless score is 10-10)
 • No second serves (unlike tennis)
 
-**During Rally:**
+During Rally:
 • Ball must bounce once on your side before returning
 • Can hit ball anywhere on opponent's side
 • Ball touching net during rally and going over: Play continues
 • Ball hitting edge of table: IN
 • Ball hitting side of table: OUT
 
-**Legal Returns:**
+Legal Returns:
 • Ball must be struck, not caught or carried
 • Can hit ball before it bounces on your side (volley) - results in point for opponent
 • Must hit ball with racket only
 • Free hand cannot touch table during play
 
-**Lets (Replay):**
+Lets (Replay):
 • Service where ball touches net but lands correctly
 • Opponent not ready (only on first occurrence)
 • Ball broken during play
 • Play disturbed by external factors
 
-**Faults (Opponent Scores):**
+Faults (Opponent Scores):
 • Ball bounces twice on your side
 • Ball doesn't bounce on opponent's side
 • Touching table with free hand during rally
@@ -641,29 +625,29 @@ const MALE_SPORTS: Sport[] = [
 • Volleying ball (hitting before it bounces on your side)
 • Double hit
 
-**Equipment:**
+Equipment:
 • ITTF approved table (9ft × 5ft × 2.5ft high)
 • ITTF approved 40mm ball (white or orange)
 • Racket: Any size, rubber on both sides if used
 • Red rubber on one side, black on other
 
-**Court Rules:**
+Court Rules:
 • Players cannot touch net or table with free hand
 • Players cannot obstruct opponent's view of ball
 • Cannot rock or move table
 • Playing area should be clear of obstructions
 
-**Timeout:**
+Timeout:
 • Each player gets 1 timeout per match (1 minute)
 • Taken between games only
 • Towel break after every 6 points
 
-**Expedite System:**
+Expedite System:
 • If game not finished after 10 minutes
 • Service alternates each point
 • Receiver wins if makes 13 returns
 
-**Conduct:**
+Conduct:
 • No coaching during game
 • Respect umpire decisions
 • No racket abuse or ball abuse
@@ -680,26 +664,26 @@ const MALE_SPORTS: Sport[] = [
     totalTeams: 6,
     maxTeams: 12,
     description: "Speed and coordination",
-    rules: `**RELAY RACE RULES (4×100M)**
+    rules: `RELAY RACE RULES (4×100M)
 
-**Team Composition:**
+Team Composition:
 • 4 runners per team
 • Each runner completes 100 meters
 • Total distance: 400 meters
 • Running order must be declared before race
 
-**Race Format:**
+Race Format:
 • Sprint relay: 4 × 100 meters
 • Each runner carries baton for their leg
 • Baton must be passed within exchange zone
 
-**Starting:**
+Starting:
 • First runner starts from crouch position (starting blocks optional)
 • Starts on starter's gun command
 • False start: Warning for first offense, disqualification for second
 • "On your marks... Set... [Gun]"
 
-**Baton Exchange - MOST CRITICAL:**
+Baton Exchange - MOST CRITICAL:
 • Exchange zones: 20-meter zones (10m before + 10m after each 100m mark)
 • Baton must be passed within exchange zone
 • Receiving runner can start running 10m before zone (acceleration zone)
@@ -708,20 +692,20 @@ const MALE_SPORTS: Sport[] = [
 • Must pick up from where it was dropped
 • Cannot leave lane to pick up baton
 
-**Exchange Technique:**
+Exchange Technique:
 • Upsweep: Incoming runner places baton up into receiver's hand
 • Downsweep: Incoming runner places baton down into receiver's hand
 • Visual exchange: Receiver looks back
 • Blind exchange: Receiver doesn't look back (faster but riskier)
 • Receiver cannot reach back before exchange zone
 
-**Lane Rules:**
+Lane Rules:
 • Each team assigned specific lane
 • Runners must stay in designated lane throughout their leg
 • Crossing into another lane: Disqualification (if gains advantage)
 • Cannot obstruct other teams
 
-**Disqualifications:**
+Disqualifications:
 • Baton exchange outside zone
 • Dropping baton and someone else picking it up
 • Running out of lane
@@ -730,37 +714,37 @@ const MALE_SPORTS: Sport[] = [
 • Throwing baton to next runner
 • Wrong running order
 
-**Winning:**
+Winning:
 • Team whose last runner crosses finish line first
 • Torso must cross line (not head or arms)
 • Baton must cross finish line
 • Photo finish if close
 
-**Race Procedure:**
+Race Procedure:
 • Leg 1: Standard sprint start from blocks/crouch
 • Legs 2-4: Standing start, waiting for baton
 • Runner must wait for baton before leaving exchange zone
 • Cannot start running before acceleration zone (10m before exchange zone)
 
-**Baton Specifications:**
+Baton Specifications:
 • Smooth, hollow tube
 • Length: 28-30 cm
 • Circumference: 12-13 cm
 • Weight: Minimum 50 grams
 • Visible color (usually bright)
 
-**Safety Rules:**
+Safety Rules:
 • Must wear proper running shoes (spikes allowed)
 • No jewelry or sharp objects
 • Athletes must stay in lane after finishing their leg
 • No coaching on track during race
 
-**Communication:**
+Communication:
 • Outgoing runner can shout "Hand!" or "Stick!" to signal readiness
 • Must be alert and coordinated
 • Practice baton exchanges before race recommended
 
-**Conduct:**
+Conduct:
 • Respect officials and other teams
 • No unsportsmanlike conduct
 • Decisions of race officials are final
@@ -777,21 +761,21 @@ const MALE_SPORTS: Sport[] = [
     totalTeams: 5,
     maxTeams: 10,
     description: "Raw power and unity",
-    rules: `**TUG OF WAR RULES**
+    rules: `TUG OF WAR RULES
 
-**Team Composition:**
+Team Composition:
 • 8 pullers per team
 • Maximum 2 substitutes
 • Total team weight limit may apply (if specified)
 • Anchor (last puller) is crucial position
 
-**Match Format:**
+Match Format:
 • Best of 3 pulls
 • Each pull continues until one team wins
 • 2-minute rest between pulls
 • 5-minute rest between matches
 
-**Equipment:**
+Equipment:
 • Rope specifications:
   - Circumference: 10-12.5 cm
   - Length: Minimum 33.5 meters
@@ -800,32 +784,32 @@ const MALE_SPORTS: Sport[] = [
   - Center line (tape on ground)
   - Two side lines 4 meters from center (one for each team)
 
-**Winning a Pull:**
+Winning a Pull:
 • Team wins when they pull center mark of rope over their 4m line
 • OR when opposing team commits a fault/violation
 • OR when judge determines team cannot continue (safety)
 
-**Starting Position:**
+Starting Position:
 • Teams line up on opposite sides of center line
 • Rope must be taut before start
 • All pullers must be behind their respective 4m line
 • Judge commands: "Pick up the rope", "Take the strain", "Pull!"
 • Pull begins on "Pull!" command only
 
-**Pulling Positions:**
+Pulling Positions:
 • Anchor (last person): Can wrap rope around body for better grip
 • Other pullers: Must hold rope with hands only
 • Must maintain position in line (no changing order during pull)
 • Foot positions: Side-by-side or tandem
 
-**Legal Techniques:**
+Legal Techniques:
 • Pulling straight back in coordinated manner
 • Leaning back with body weight
 • Bracing feet against ground
 • Synchronized pulling commands/chanting
 • Anchor wrapping rope around body/shoulder
 
-**Fouls & Violations:**
+Fouls & Violations:
 • Sitting or falling deliberately
 • Locking/knotting rope around body (except anchor)
 • Touching ground with any body part except feet
@@ -835,13 +819,13 @@ const MALE_SPORTS: Sport[] = [
 • Using gloves or grip aids (unless permitted)
 • Verbal abuse or unsportsmanlike conduct
 
-**Anchor Rules:**
+Anchor Rules:
 • Last puller on team
 • Can wrap rope over shoulder and around body
 • Provides stability and power to team
 • Must maintain control of rope at all times
 
-**Safety Rules:**
+Safety Rules:
 • Proper footwear required (flat sole, good grip)
 • No gloves with grip enhancements (unless specified)
 • No sharp objects or jewelry
@@ -849,24 +833,24 @@ const MALE_SPORTS: Sport[] = [
 • Judge can stop pull if safety concern arises
 • No wrapping rope around hands (risk of injury)
 
-**Coaching:**
+Coaching:
 • Coach can give commands from designated area
 • Cannot touch rope or pullers during pull
 • Cannot cross boundary lines
 • Must respect judge's authority
 
-**Ground Surface:**
+Ground Surface:
 • Flat, non-slip surface preferred
 • Grass or indoor mat typical
 • No holes or obstacles near pulling area
 • Safe run-off space behind each team
 
-**Weight Classes:**
+Weight Classes:
 • May be organized by total team weight
 • Weigh-in before competition if required
 • Weight limit must be met (if applicable)
 
-**Strategy:**
+Strategy:
 • Coordination and timing crucial
 • Anchor provides stability
 • Front pullers provide initial power
@@ -874,13 +858,13 @@ const MALE_SPORTS: Sport[] = [
 • Team communication essential
 • Rhythmic pulling more effective than random
 
-**Judging:**
+Judging:
 • Judge's decision is final
 • Center mark must clearly cross line to win
 • Judge monitors for fouls
 • Can award pull to team if opponent commits violation
 
-**Conduct:**
+Conduct:
 • Sportsmanship essential
 • No intentional injury to opponents
 • Respect officials and opponents
@@ -900,28 +884,28 @@ const FEMALE_SPORTS: Sport[] = [
     totalTeams: 4,
     maxTeams: 8,
     description: "Accuracy and strategy",
-    rules: `**THROWBALL RULES**
+    rules: `THROWBALL RULES
 
-**Team Composition:**
+Team Composition:
 • 7 players on court per team
 • Maximum 2 substitutes
 • Positions: 4 front court + 3 back court players
 • Players must maintain position zones during play
 
-**Match Format:**
+Match Format:
 • Best of 3 sets
 • Sets 1 & 2: First team to 15 points (must win by 2)
 • Set 3 (if needed): First team to 7 points (must win by 2)
 • Rally scoring: Point on every serve
 • 2-minute break between sets
 
-**Court Dimensions:**
+Court Dimensions:
 • Length: 18.3 meters (60 feet)
 • Width: 12.2 meters (40 feet)
 • Net height: 2.2 meters (7.2 feet) for women
 • Divided into front court and back court by center line
 
-**Serving Rules:**
+Serving Rules:
 • Server must be in back right position
 • Serve from behind end line
 • Ball must be thrown (not hit) over net
@@ -930,7 +914,7 @@ const FEMALE_SPORTS: Sport[] = [
 • Served ball touching net and going over: FAULT (unlike volleyball)
 • Server must throw ball with one or both hands
 
-**Playing the Ball:**
+Playing the Ball:
 • Ball must be CAUGHT and THROWN (not hit or volleyed)
 • Player catching ball must release it within 3 seconds
 • Ball can be caught with one or both hands
@@ -938,18 +922,18 @@ const FEMALE_SPORTS: Sport[] = [
 • No dribbling or multiple contacts
 • Ball must travel over net in throwing motion
 
-**Rotation:**
+Rotation:
 • Team winning serve rotates clockwise
 • Must maintain rotation order throughout set
 • Players shift positions after winning serve from opponent
 
-**Court Positions:**
+Court Positions:
 • Front court: 3 left + 1 right (4 players)
 • Back court: 3 players
 • Players must stay in their zone until ball is thrown
 • Can move within zone freely
 
-**Scoring:**
+Scoring:
 • Rally point system (point on every throw)
 • Point awarded when:
   - Ball lands in opponent's court
@@ -957,7 +941,7 @@ const FEMALE_SPORTS: Sport[] = [
   - Opponent fails to return ball legally
 • Team winning rally scores and serves next (if not already serving)
 
-**Faults (Opponent Scores):**
+Faults (Opponent Scores):
 • Ball thrown out of bounds
 • Taking more than 3 seconds to throw
 • Ball touching net during throw
@@ -968,42 +952,42 @@ const FEMALE_SPORTS: Sport[] = [
 • Illegal catch (juggling, fumbling)
 • Player out of position zone
 
-**Net Rules:**
+Net Rules:
 • Players cannot touch net with body or clothing
 • Cannot reach over net to catch ball
 • Ball touching net during play (not serve): Fault
 • Net height: 2.2m for women, 2.4m for men
 
-**Substitutions:**
+Substitutions:
 • Allowed during dead ball situations only
 • Must notify referee before substituting
 • Substitute enters at back right position
 • Maximum 2 substitutes per team
 • Player leaving can re-enter once per set
 
-**Timeouts:**
+Timeouts:
 • Each team gets 2 timeouts per set (30 seconds each)
 • Can only be called by captain
 • Taken during dead ball situation
 
-**Winning:**
+Winning:
 • Win 2 out of 3 sets
 • Must win set by 2 points
 • No maximum point cap
 
-**Ball Specifications:**
+Ball Specifications:
 • Size: Circumference 65-67 cm
 • Weight: 400-450 grams
 • Properly inflated to official pressure
 • Must be spherical and leather/synthetic
 
-**Special Rules:**
+Special Rules:
 • Joker/Powerplay: May be allowed (1 player can play any position for limited time)
 • Back court players cannot catch ball in front court zone
 • Captain can dispute decisions politely
 • Referee decision is final
 
-**Conduct:**
+Conduct:
 • Fair play and sportsmanship essential
 • No arguing with officials
 • Respect opponents and teammates
@@ -1011,7 +995,7 @@ const FEMALE_SPORTS: Sport[] = [
 • Yellow card: Warning
 • Red card: Point penalty or expulsion
 
-**Key Differences from Volleyball:**
+Key Differences from Volleyball:
 • CATCH and THROW (not hit)
 • Only ONE touch per team
 • Ball touching net is FAULT (even during rally)
@@ -1026,9 +1010,9 @@ const FEMALE_SPORTS: Sport[] = [
     totalTeams: 18,
     maxTeams: 32,
     description: "Speed and precision",
-    rules: `**BADMINTON SINGLES RULES**
+    rules: `BADMINTON SINGLES RULES
 
-**Match Format:**
+Match Format:
 • Best of 3 games
 • Each game: First to 21 points
 • Must win by 2 points
@@ -1036,12 +1020,12 @@ const FEMALE_SPORTS: Sport[] = [
 • 60-second rest between games
 • 2-minute rest between 2nd and 3rd games
 
-**Scoring System:**
+Scoring System:
 • Rally point scoring (point on every serve)
 • Winner of rally scores point and serves next
 • Player winning game serves first in next game
 
-**Service Rules:**
+Service Rules:
 • Serve diagonally to opponent's service court
 • Server and receiver must stand in diagonally opposite service courts
 • Feet must remain stationary until serve is struck
@@ -1051,25 +1035,25 @@ const FEMALE_SPORTS: Sport[] = [
 • If score is EVEN: Serve from RIGHT service court
 • If score is ODD: Serve from LEFT service court
 
-**Court Usage:**
+Court Usage:
 • Service courts: Narrower (singles sideline)
 • After service: Full court width (including doubles sideline)
 • Singles sidelines apply during rallies
 
-**During Rally:**
+During Rally:
 • Shuttle must pass over net
 • Shuttle cannot touch ceiling or walls
 • Player cannot touch net with racket or body
 • Shuttle cannot be hit twice consecutively by same player
 • Shuttle landing on line is IN
 
-**Lets (Replay):**
+Lets (Replay):
 • Shuttle caught in/on net during service
 • Service receiver not ready
 • Unforeseen or accidental situation
 • Shuttle disintegrates during play
 
-**Faults (Opponent Wins Rally):**
+Faults (Opponent Wins Rally):
 • Shuttle lands outside boundary lines
 • Shuttle doesn't cross net
 • Shuttle touches player's body or clothing
@@ -1079,17 +1063,17 @@ const FEMALE_SPORTS: Sport[] = [
 • Obstructing opponent
 • Service faults (illegal service)
 
-**Interval & Change of Ends:**
+Interval & Change of Ends:
 • Change ends after each game
 • In 3rd game: Change ends when leading player reaches 11 points
 • 60-second interval when leading player reaches 11 points
 
-**Equipment:**
+Equipment:
 • Approved BWF feather shuttlecock
 • Racket meeting BWF specifications
 • Proper court shoes (non-marking)
 
-**Conduct:**
+Conduct:
 • No coaching during match
 • No abuse of equipment
 • Respect umpire decisions
@@ -1106,9 +1090,9 @@ const FEMALE_SPORTS: Sport[] = [
     totalTeams: 10,
     maxTeams: 16,
     description: "Coordination challenge",
-    rules: `**BADMINTON DOUBLES RULES**
+    rules: `BADMINTON DOUBLES RULES
 
-**Match Format:**
+Match Format:
 • Best of 3 games
 • Each game: First to 21 points
 • Must win by 2 points
@@ -1116,13 +1100,13 @@ const FEMALE_SPORTS: Sport[] = [
 • 60-second rest between games
 • 2-minute rest between 2nd and 3rd games
 
-**Scoring System:**
+Scoring System:
 • Rally point scoring (point on every serve)
 • Winning pair scores point and serves next
 • Same server continues serving until pair loses rally
 • Pair winning game serves first in next game
 
-**Service Rules - CRITICAL FOR DOUBLES:**
+Service Rules - CRITICAL FOR DOUBLES:
 • Serve diagonally to opponent's service court
 • Server, partner, receiver, and receiver's partner must stay in respective courts
 • Feet must remain stationary until serve is struck
@@ -1131,19 +1115,19 @@ const FEMALE_SPORTS: Sport[] = [
 • If serving side's score is EVEN (0, 2, 4...): Serve from RIGHT court
 • If serving side's score is ODD (1, 3, 5...): Serve from LEFT court
 
-**Service Sequence (Important):**
+Service Sequence (Important):
 • At start of game: Serving side gets only ONE service
 • After first rally: Winning side serves
 • Only player in correct service court may serve/receive
 • Partners switch service courts after winning rally while serving
 • Partners DO NOT switch when receiving side wins rally
 
-**Court Boundaries:**
+Court Boundaries:
 • Service courts: Shorter (inner back line) and wider (outer sideline)
 • After service: Full court including outer sideline and back tramline
 • Doubles sidelines and back lines apply during rallies
 
-**During Rally:**
+During Rally:
 • Either partner may hit the shuttle
 • Shuttle cannot be hit twice consecutively by same pair
 • Partners can hit shuttle alternately or either can hit
@@ -1151,12 +1135,12 @@ const FEMALE_SPORTS: Sport[] = [
 • Players cannot touch net with racket or body
 • Shuttle landing on line is IN
 
-**Rotation of Service:**
+Rotation of Service:
 • When serving side wins rally: Same server serves from alternate court
 • When receiving side wins rally: They become serving side, no position change
 • Player who was in right court serves first for new serving side
 
-**Faults:**
+Faults:
 • Service faults: Wrong court, illegal service motion, foot fault
 • Shuttle lands outside boundaries during service
 • Shuttle doesn't cross net
@@ -1166,23 +1150,23 @@ const FEMALE_SPORTS: Sport[] = [
 • Touching net during play
 • Double hit by same player
 
-**Interval & Change of Ends:**
+Interval & Change of Ends:
 • Change ends after each game
 • In 3rd game: Change ends when leading pair reaches 11 points
 • 60-second interval when leading pair reaches 11 points
 
-**Communication & Strategy:**
+Communication & Strategy:
 • Partners may communicate during play
 • Front-back or side-by-side formations allowed
 • Team strategy and positioning is key
 
-**Lets (Replay):**
+Lets (Replay):
 • Shuttle caught in/on net during service
 • Receiver not ready
 • Accidental or unforeseen situation
 • Shuttle disintegrates during play
 
-**Conduct:**
+Conduct:
 • No coaching during match
 • Partners must work as team
 • Respect umpire decisions
@@ -1198,16 +1182,16 @@ const FEMALE_SPORTS: Sport[] = [
     totalTeams: 15,
     maxTeams: 32,
     description: "Lightning-fast reflexes",
-    rules: `**TABLE TENNIS SINGLES RULES**
+    rules: `TABLE TENNIS SINGLES RULES
 
-**Match Format:**
+Match Format:
 • Best of 5 games (first to win 3 games)
 • Each game: First to 11 points
 • Must win by 2 points
 • If score reaches 10-10: Play continues until one player leads by 2
 • 1-minute rest between games
 
-**Service Rules:**
+Service Rules:
 • Service alternates every 2 points (not every 5 points)
 • At 10-10 (deuce): Service alternates every point
 • Ball must be visible to opponent before service
@@ -1217,32 +1201,32 @@ const FEMALE_SPORTS: Sport[] = [
 • Service must be diagonal (no straight serves)
 • Ball touching net during service but landing correctly: LET (replay)
 
-**Scoring:**
+Scoring:
 • Rally point scoring (point on every serve)
 • Winner of rally scores point
 • Player losing previous point serves next (unless score is 10-10)
 • No second serves (unlike tennis)
 
-**During Rally:**
+During Rally:
 • Ball must bounce once on your side before returning
 • Can hit ball anywhere on opponent's side
 • Ball touching net during rally and going over: Play continues
 • Ball hitting edge of table: IN
 • Ball hitting side of table: OUT
 
-**Legal Returns:**
+Legal Returns:
 • Ball must be struck, not caught or carried
 • Can hit ball before it bounces on your side (volley) - results in point for opponent
 • Must hit ball with racket only
 • Free hand cannot touch table during play
 
-**Lets (Replay):**
+Lets (Replay):
 • Service where ball touches net but lands correctly
 • Opponent not ready (only on first occurrence)
 • Ball broken during play
 • Play disturbed by external factors
 
-**Faults (Opponent Scores):**
+Faults (Opponent Scores):
 • Ball bounces twice on your side
 • Ball doesn't bounce on opponent's side
 • Touching table with free hand during rally
@@ -1252,29 +1236,29 @@ const FEMALE_SPORTS: Sport[] = [
 • Volleying ball (hitting before it bounces on your side)
 • Double hit
 
-**Equipment:**
+Equipment:
 • ITTF approved table (9ft × 5ft × 2.5ft high)
 • ITTF approved 40mm ball (white or orange)
 • Racket: Any size, rubber on both sides if used
 • Red rubber on one side, black on other
 
-**Court Rules:**
+Court Rules:
 • Players cannot touch net or table with free hand
 • Players cannot obstruct opponent's view of ball
 • Cannot rock or move table
 • Playing area should be clear of obstructions
 
-**Timeout:**
+Timeout:
 • Each player gets 1 timeout per match (1 minute)
 • Taken between games only
 • Towel break after every 6 points
 
-**Expedite System:**
+Expedite System:
 • If game not finished after 10 minutes
 • Service alternates each point
 • Receiver wins if makes 13 returns
 
-**Conduct:**
+Conduct:
 • No coaching during game
 • Respect umpire decisions
 • No racket abuse or ball abuse
@@ -1291,26 +1275,26 @@ const FEMALE_SPORTS: Sport[] = [
     totalTeams: 3,
     maxTeams: 10,
     description: "Speed and coordination",
-    rules: `**RELAY RACE RULES (4×100M)**
+    rules: `RELAY RACE RULES (4×100M)
 
-**Team Composition:**
+Team Composition:
 • 4 runners per team
 • Each runner completes 100 meters
 • Total distance: 400 meters
 • Running order must be declared before race
 
-**Race Format:**
+Race Format:
 • Sprint relay: 4 × 100 meters
 • Each runner carries baton for their leg
 • Baton must be passed within exchange zone
 
-**Starting:**
+Starting:
 • First runner starts from crouch position (starting blocks optional)
 • Starts on starter's gun command
 • False start: Warning for first offense, disqualification for second
 • "On your marks... Set... [Gun]"
 
-**Baton Exchange - MOST CRITICAL:**
+Baton Exchange - MOST CRITICAL:
 • Exchange zones: 20-meter zones (10m before + 10m after each 100m mark)
 • Baton must be passed within exchange zone
 • Receiving runner can start running 10m before zone (acceleration zone)
@@ -1319,20 +1303,20 @@ const FEMALE_SPORTS: Sport[] = [
 • Must pick up from where it was dropped
 • Cannot leave lane to pick up baton
 
-**Exchange Technique:**
+Exchange Technique:
 • Upsweep: Incoming runner places baton up into receiver's hand
 • Downsweep: Incoming runner places baton down into receiver's hand
 • Visual exchange: Receiver looks back
 • Blind exchange: Receiver doesn't look back (faster but riskier)
 • Receiver cannot reach back before exchange zone
 
-**Lane Rules:**
+Lane Rules:
 • Each team assigned specific lane
 • Runners must stay in designated lane throughout their leg
 • Crossing into another lane: Disqualification (if gains advantage)
 • Cannot obstruct other teams
 
-**Disqualifications:**
+Disqualifications:
 • Baton exchange outside zone
 • Dropping baton and someone else picking it up
 • Running out of lane
@@ -1341,37 +1325,37 @@ const FEMALE_SPORTS: Sport[] = [
 • Throwing baton to next runner
 • Wrong running order
 
-**Winning:**
+Winning:
 • Team whose last runner crosses finish line first
 • Torso must cross line (not head or arms)
 • Baton must cross finish line
 • Photo finish if close
 
-**Race Procedure:**
+Race Procedure:
 • Leg 1: Standard sprint start from blocks/crouch
 • Legs 2-4: Standing start, waiting for baton
 • Runner must wait for baton before leaving exchange zone
 • Cannot start running before acceleration zone (10m before exchange zone)
 
-**Baton Specifications:**
+Baton Specifications:
 • Smooth, hollow tube
 • Length: 28-30 cm
 • Circumference: 12-13 cm
 • Weight: Minimum 50 grams
 • Visible color (usually bright)
 
-**Safety Rules:**
+Safety Rules:
 • Must wear proper running shoes (spikes allowed)
 • No jewelry or sharp objects
 • Athletes must stay in lane after finishing their leg
 • No coaching on track during race
 
-**Communication:**
+Communication:
 • Outgoing runner can shout "Hand!" or "Stick!" to signal readiness
 • Must be alert and coordinated
 • Practice baton exchanges before race recommended
 
-**Conduct:**
+Conduct:
 • Respect officials and other teams
 • No unsportsmanlike conduct
 • Decisions of race officials are final
@@ -1388,21 +1372,21 @@ const FEMALE_SPORTS: Sport[] = [
     totalTeams: 2,
     maxTeams: 8,
     description: "Raw power and unity",
-    rules: `**TUG OF WAR RULES**
+    rules: `TUG OF WAR RULES
 
-**Team Composition:**
+Team Composition:
 • 8 pullers per team
 • Maximum 2 substitutes
 • Total team weight limit may apply (if specified)
 • Anchor (last puller) is crucial position
 
-**Match Format:**
+Match Format:
 • Best of 3 pulls
 • Each pull continues until one team wins
 • 2-minute rest between pulls
 • 5-minute rest between matches
 
-**Equipment:**
+Equipment:
 • Rope specifications:
   - Circumference: 10-12.5 cm
   - Length: Minimum 33.5 meters
@@ -1411,32 +1395,32 @@ const FEMALE_SPORTS: Sport[] = [
   - Center line (tape on ground)
   - Two side lines 4 meters from center (one for each team)
 
-**Winning a Pull:**
+Winning a Pull:
 • Team wins when they pull center mark of rope over their 4m line
 • OR when opposing team commits a fault/violation
 • OR when judge determines team cannot continue (safety)
 
-**Starting Position:**
+Starting Position:
 • Teams line up on opposite sides of center line
 • Rope must be taut before start
 • All pullers must be behind their respective 4m line
 • Judge commands: "Pick up the rope", "Take the strain", "Pull!"
 • Pull begins on "Pull!" command only
 
-**Pulling Positions:**
+Pulling Positions:
 • Anchor (last person): Can wrap rope around body for better grip
 • Other pullers: Must hold rope with hands only
 • Must maintain position in line (no changing order during pull)
 • Foot positions: Side-by-side or tandem
 
-**Legal Techniques:**
+Legal Techniques:
 • Pulling straight back in coordinated manner
 • Leaning back with body weight
 • Bracing feet against ground
 • Synchronized pulling commands/chanting
 • Anchor wrapping rope around body/shoulder
 
-**Fouls & Violations:**
+Fouls & Violations:
 • Sitting or falling deliberately
 • Locking/knotting rope around body (except anchor)
 • Touching ground with any body part except feet
@@ -1446,13 +1430,13 @@ const FEMALE_SPORTS: Sport[] = [
 • Using gloves or grip aids (unless permitted)
 • Verbal abuse or unsportsmanlike conduct
 
-**Anchor Rules:**
+Anchor Rules:
 • Last puller on team
 • Can wrap rope over shoulder and around body
 • Provides stability and power to team
 • Must maintain control of rope at all times
 
-**Safety Rules:**
+Safety Rules:
 • Proper footwear required (flat sole, good grip)
 • No gloves with grip enhancements (unless specified)
 • No sharp objects or jewelry
@@ -1460,24 +1444,24 @@ const FEMALE_SPORTS: Sport[] = [
 • Judge can stop pull if safety concern arises
 • No wrapping rope around hands (risk of injury)
 
-**Coaching:**
+Coaching:
 • Coach can give commands from designated area
 • Cannot touch rope or pullers during pull
 • Cannot cross boundary lines
 • Must respect judge's authority
 
-**Ground Surface:**
+Ground Surface:
 • Flat, non-slip surface preferred
 • Grass or indoor mat typical
 • No holes or obstacles near pulling area
 • Safe run-off space behind each team
 
-**Weight Classes:**
+Weight Classes:
 • May be organized by total team weight
 • Weigh-in before competition if required
 • Weight limit must be met (if applicable)
 
-**Strategy:**
+Strategy:
 • Coordination and timing crucial
 • Anchor provides stability
 • Front pullers provide initial power
@@ -1485,13 +1469,13 @@ const FEMALE_SPORTS: Sport[] = [
 • Team communication essential
 • Rhythmic pulling more effective than random
 
-**Judging:**
+Judging:
 • Judge's decision is final
 • Center mark must clearly cross line to win
 • Judge monitors for fouls
 • Can award pull to team if opponent commits violation
 
-**Conduct:**
+Conduct:
 • Sportsmanship essential
 • No intentional injury to opponents
 • Respect officials and opponents
