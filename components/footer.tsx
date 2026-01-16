@@ -73,35 +73,41 @@ export default function Footer() {
         </div> */}
 
         <div>
-          <h3 className="text-lg font-bold text-cyan-400 mb-4">Contact</h3>
+  <h3 className="text-lg font-bold text-cyan-400 mb-4">Contact</h3>
 
-          <p className="text-gray-500 text-xs">
-            Email:{" "}
-            <a
-              href="mailto:enayatrehman88@gmail.com"
-              className="text-cyan-400 hover:underline"
-            >
-              enayatrehman88@gmail.com
-            </a>
-          </p>
+  <p className="text-gray-500 text-xs mb-2">
+    For any queries or issues regarding the registration form, please contact:
+  </p>
 
-          <p className="text-gray-500 text-xs">
-            Email:{" "}
-            <a
-              href="mailto:hbnasir23@gmail.com"
-              className="text-cyan-400 hover:underline"
-            >
-              hbnasir23@gmail.com
-            </a>
-          </p>
+  <p className="text-gray-500 text-xs">
+    
+    <a
+      href="https://wa.me/923172027147"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-cyan-400 hover:underline"
+    >
+      Enayat Ur Rehman
+    </a>
+  </p>
 
-          <div className="text-md font-bold text-red-800 mb-6">
-            <Link href='/admin'>Login As Admin</Link>
-          </div>
+  <p className="text-gray-500 text-xs">
+    
+    <a
+      href="https://wa.me/923318115835"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-cyan-400 hover:underline"
+    >
+      Haris Bin Nasir
+    </a>
+  </p>
 
+  <div className="text-md font-bold text-red-800 mt-4">
+    <Link href="/admin">Login as Admin</Link>
+  </div>
+</div>
 
-
-        </div>
 
         
 
@@ -114,12 +120,7 @@ export default function Footer() {
         <div className="border-t border-slate-800 pt-8">
           <p className="text-center text-gray-500 text-sm">© 2026 TECHLETICS. All rights reserved. Techletics 2.0</p>
         </div>
-        <p className="text-center text-white text-[10px] mt-3 opacity-100 md:opacity-60 md:hover:opacity-100 transition">
-          <span className="text-white">•</span>
-          {" "}Developed by Enayat Ur Rehman & Haris Bin Nasir{" "}
-          <span className="text-white">•</span>
-        </p>
-
+       
 
     </div>
     </footer>
