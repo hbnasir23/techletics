@@ -46,8 +46,10 @@ export default function Hero() {
         </p>
         
         <p className="mb-8 text-sm text-gray-400">
-          Organized by: Head of Software Engineering Department
+          Organized under the supervision of the Head of the Software Engineering Department, 
+          in collaboration with department alumni, and managed by 3rd Year Software Engineering students.
         </p>
+
         
         <div className="flex gap-4 flex-wrap justify-center">
           <a href="#sports">
