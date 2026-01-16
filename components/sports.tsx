@@ -1647,7 +1647,7 @@ export default function Sports() {
                   <div className="text-xs text-gray-500 mb-6 flex-grow relative z-10">
                     <div>Team Size: {sport.teamSize} players</div>
                     {sport.maxSubstitutes && (
-                      <div>Substitutes: Up to {sport.maxSubstitutes}</div>
+                      <div>Including {sport.maxSubstitutes} substitutes</div>
                     )}
                   </div>
                 )}
