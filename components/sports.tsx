@@ -271,7 +271,7 @@ const MALE_SPORTS: Sport[] = [
     name: "Futsal", 
     icon: "⚽", 
     type: "team",
-    teamSize: 6,
+    teamSize: 9,
     maxSubstitutes: 3,
     totalTeams: 12,
     maxTeams: 16,
