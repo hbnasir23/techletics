@@ -426,124 +426,46 @@ const FEMALE_SPORTS: Sport[] = [
     totalTeams: 4,
     maxTeams: 8,
     description:
-      "Match Format: Best of 3 Sets (Set 1 & 2: First to 15, Set 3: First to 7)",
+      "Match Format: KKnockout",
     rules: `THROWBALL RULES
 
-Team Composition:
+Team Format:
 • 7 players on court per team
-• Maximum 2 substitutes
-• Positions: 4 front court + 3 back court players
-• Players must maintain position zones during play
 
 Match Format:
-• Best of 3 sets
-• Sets 1 & 2: First team to 15 points (must win by 2)
-• Set 3 (if needed): First team to 7 points (must win by 2)
-• Rally scoring: Point on every serve
-• 2-minute break between sets
-
-Court Dimensions:
-• Length: 18.3 meters (60 feet)
-• Width: 12.2 meters (40 feet)
-• Net height: 2.2 meters (7.2 feet) for women
-• Divided into front court and back court by center line
-
-Serving Rules:
-• Server must be in back right position
-• Serve from behind end line
-• Ball must be thrown (not hit) over net
-• Server gets ONE attempt only (no second serve)
-• Serve must land in opponent's court
-• Served ball touching net and going over: FAULT (unlike volleyball)
-• Server must throw ball with one or both hands
-
-Playing the Ball:
-• Ball must be CAUGHT and THROWN (not hit or volleyed)
-• Player catching ball must release it within 3 seconds
-• Ball can be caught with one or both hands
-• Only ONE catch per team before returning ball
-• No dribbling or multiple contacts
-• Ball must travel over net in throwing motion
-
-Rotation:
-• Team winning serve rotates clockwise
-• Must maintain rotation order throughout set
-• Players shift positions after winning serve from opponent
-
-Court Positions:
-• Front court: 3 left + 1 right (4 players)
-• Back court: 3 players
-• Players must stay in their zone until ball is thrown
-• Can move within zone freely
+• Knockout tournament
+• Normal Matches: Single match to 15 points
+  - 14 is game point
+  - Must win by 2 points
+• Semi-Final: Single match to 20 points
+  - Must win by 2 points
+• Final: Single match to 25 points
+  - Must win by 2 points
 
 Scoring:
-• Rally point system (point on every throw)
-• Point awarded when:
-  - Ball lands in opponent's court
-  - Opponent commits fault
-  - Opponent fails to return ball legally
-• Team winning rally scores and serves next (if not already serving)
+• Rally point scoring
+• Point on every serve
 
-Faults (Opponent Scores):
-• Ball thrown out of bounds
-• Taking more than 3 seconds to throw
-• Ball touching net during throw
-• Catching ball twice by same team
-• Stepping into opponent's court
-• Touching net during play
-• Improper throw (ball not released cleanly)
-• Illegal catch (juggling, fumbling)
-• Player out of position zone
+Serving Rules (Minimal):
+• Serve from behind end line
+• Ball must be thrown over the net
+• Only ONE serve attempt
 
-Net Rules:
-• Players cannot touch net with body or clothing
-• Cannot reach over net to catch ball
-• Ball touching net during play (not serve): Fault
-• Net height: 2.2m for women, 2.4m for men
+Play Rules (Minimal):
+• Ball must be caught and thrown
+• Player must release ball within 3 seconds
+• Only ONE catch per team
+• Ball touching net is FAULT
 
-Substitutions:
-• Allowed during dead ball situations only
-• Must notify referee before substituting
-• Substitute enters at back right position
-• Maximum 2 substitutes per team
-• Player leaving can re-enter once per set
-
-Timeouts:
-• Each team gets 2 timeouts per set (30 seconds each)
-• Can only be called by captain
-• Taken during dead ball situation
-
-Winning:
-• Win 2 out of 3 sets
-• Must win set by 2 points
-• No maximum point cap
-
-Ball Specifications:
-• Size: Circumference 65-67 cm
-• Weight: 400-450 grams
-• Properly inflated to official pressure
-• Must be spherical and leather/synthetic
-
-Special Rules:
-• Joker/Powerplay: May be allowed (1 player can play any position for limited time)
-• Back court players cannot catch ball in front court zone
-• Captain can dispute decisions politely
-• Referee decision is final
+General Rules:
+• Players must stay in their court
+• No touching the net
+• All other standard throwball rules apply
 
 Conduct:
-• Fair play and sportsmanship essential
-• No arguing with officials
-• Respect opponents and teammates
-• No unsportsmanlike conduct
-• Yellow card: Warning
-• Red card: Point penalty or expulsion
-
-Key Differences from Volleyball:
-• CATCH and THROW (not hit)
-• Only ONE touch per team
-• Ball touching net is FAULT (even during rally)
-• 3-second rule for holding ball
-• Different court positioning rules`,
+• Referee decision is final
+• Fair play and sportsmanship required
+`,
   },
   {
     id: "badminton-singles",
@@ -552,7 +474,7 @@ Key Differences from Volleyball:
     type: "solo",
     totalTeams: 18,
     maxTeams: 32,
-    description: "Match Format: Best of 3 Games (First to 21 points)",
+    description: "Match Format: Knockout",
     rules: `BADMINTON SINGLES RULES
 
 Match Format:
@@ -591,7 +513,7 @@ General Rules:
     teamSize: 2,
     totalTeams: 10,
     maxTeams: 16,
-    description: "Match Format: Best of 3 Games (First to 21 points)",
+    description: "Match Format: Knockout",
     rules: `BADMINTON DOUBLES RULES
 
 Match Format:
