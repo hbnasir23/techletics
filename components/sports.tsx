@@ -559,7 +559,7 @@ Conduct:
     name: "Tug of War", 
     icon: "🔗", 
     type: "team",
-    teamSize: 8,
+    teamSize: 5,
     // maxSubstitutes: 2,
     totalTeams: 5,
     maxTeams: 10,

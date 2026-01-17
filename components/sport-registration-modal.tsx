@@ -1243,7 +1243,7 @@ export default function SportRegistrationModal({ sport, isOpen, onClose }: Sport
         captainName: "Enayat Ur Rehman",
         captainEmail: "rehman4603321@cloud.neduet.edu.pk",
         captainRollNo: "SE-23086",
-        section: "FESE-B",
+        section: "TESE-B",
         teamName: sport.type !== 'solo' ? "Demo Team" : "",
         captainPhone: "03XXXXXXXXX",
       })

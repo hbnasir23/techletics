@@ -292,11 +292,7 @@ export default function AdminDashboard() {
               Sign In
             </Button>
 
-            <div className="text-xs text-gray-500 text-center mt-4">
-              Demo credentials:<br />
-              admin@cloud.neduet.edu.pk / Admin@123<br />
-              sports@cloud.neduet.edu.pk / Sports@123
-            </div>
+            
           </div>
         </div>
       </div>
