@@ -47,7 +47,7 @@ export default function Hero() {
         
         <p className="mb-8 text-sm text-gray-400">
           Organized under the supervision of the Head of the Software Engineering Department, 
-          in collaboration with department alumni, and managed by 3rd Year Software Engineering students.
+          in collaboration with NED Software Community (NSC), and managed by 3rd Year Software Engineering students.
         </p>
 
         

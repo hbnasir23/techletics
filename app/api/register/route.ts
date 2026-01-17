@@ -100,23 +100,33 @@ export async function POST(request: NextRequest) {
       const teamMembers = body.teamMembers || []
       const allPlayers = [captain, ...teamMembers]
 
-      // Check if captain is already registered for this sport
-      const { data: existingCaptainPlayer } = await supabase
-        .from("players")
-        .select("id")
-        .eq("roll_number", captain.rollNo)
-        .single()
+      // Check if ANY player (captain or team member) is already registered for this sport
+      for (let i = 0; i < allPlayers.length; i++) {
+        const player = allPlayers[i]
+        const isCaptain = i === 0
+        const playerRollNo = 'rollNo' in player ? player.rollNo : ''
+        const playerName = 'name' in player ? player.name : ''
 
-      if (existingCaptainPlayer) {
-        const { data: existingReg } = await supabase
-          .from("registrations")
+        const { data: existingPlayer } = await supabase
+          .from("players")
           .select("id")
-          .eq("sport_id", sportData.id)
-          .eq("player_id", existingCaptainPlayer.id)
+          .eq("roll_number", playerRollNo)
           .single()
 
-        if (existingReg) {
-          return NextResponse.json({ error: "Captain already registered for this sport" }, { status: 409 })
+        if (existingPlayer) {
+          const { data: existingReg } = await supabase
+            .from("registrations")
+            .select("id")
+            .eq("sport_id", sportData.id)
+            .eq("player_id", existingPlayer.id)
+            .single()
+
+          if (existingReg) {
+            const playerType = isCaptain ? "Captain" : "Team member"
+            return NextResponse.json({ 
+              error: `${playerType} ${playerName} (${playerRollNo}) is already registered for this sport` 
+            }, { status: 409 })
+          }
         }
       }
 
