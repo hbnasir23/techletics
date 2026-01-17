@@ -28,7 +28,7 @@ const MALE_SPORTS: Sport[] = [
     // maxSubstitutes: 1,
     totalTeams: 8,
     maxTeams: 16,
-    description: "Venue: Tennis Court",
+    description: "Match Format: Group Stage → Semi-Finals → Final",
     rules: `CRICKET - 7-A-SIDE FORMAT
 
 Team Composition: 
@@ -80,7 +80,7 @@ General Rules:
     maxSubstitutes: 2,
     totalTeams: 12,
     maxTeams: 16,
-    description: "Venue: BasketBall Court",
+    description: "Match Format: Group Stage → Semi-Finals → Final",
     rules: `FUTSAL RULES & GUIDELINES
 
 Team Composition:
@@ -139,7 +139,7 @@ Discipline & Sportsmanship:
     // maxSubstitutes: 2,
     totalTeams: 10,
     maxTeams: 12,
-    description: "Agility and teamwork",
+    description: "Match Format: Knockout",
     rules: `VOLLEYBALL RULES
 
 Team Composition:
@@ -201,7 +201,7 @@ Conduct:
     type: "solo",
     totalTeams: 24,
     maxTeams: 32,
-    description: "Speed and precision",
+    description: "Match Format: Knockout",
     rules: `BADMINTON SINGLES RULES
 
 Match Format:
@@ -281,7 +281,7 @@ Conduct:
     teamSize: 2,
     totalTeams: 14,
     maxTeams: 16,
-    description: "Coordination challenge",
+    description: "Match Format: Knockout",
     rules: `BADMINTON DOUBLES RULES
 
 Match Format:
@@ -373,7 +373,7 @@ Conduct:
     type: "solo",
     totalTeams: 20,
     maxTeams: 32,
-    description: "Lightning-fast reflexes",
+    description: "Match Format: Knockout",
     rules: `TABLE TENNIS SINGLES RULES
 
 Match Format:
@@ -466,7 +466,7 @@ Conduct:
     teamSize: 4,
     totalTeams: 6,
     maxTeams: 12,
-    description: "Speed and coordination",
+    description: "Match Format: Knockout",
     rules: `RELAY RACE RULES (4×100M)
 
 Team Composition:
@@ -563,7 +563,7 @@ Conduct:
     // maxSubstitutes: 2,
     totalTeams: 5,
     maxTeams: 10,
-    description: "Raw power and unity",
+    description: "Match Format: Knockout",
     rules: `TUG OF WAR RULES
 
 Team Composition:
@@ -686,7 +686,7 @@ const FEMALE_SPORTS: Sport[] = [
     maxSubstitutes: 2,
     totalTeams: 4,
     maxTeams: 8,
-    description: "Accuracy and strategy",
+    description: "Match Format: Best of 3 Sets (Set 1 & 2: First to 15, Set 3: First to 7)",
     rules: `THROWBALL RULES
 
 Team Composition:
@@ -812,7 +812,7 @@ Key Differences from Volleyball:
     type: "solo",
     totalTeams: 18,
     maxTeams: 32,
-    description: "Speed and precision",
+    description: "Match Format: Best of 3 Games (First to 21 points)",
     rules: `BADMINTON SINGLES RULES
 
 Match Format:
@@ -892,7 +892,7 @@ Conduct:
     teamSize: 2,
     totalTeams: 10,
     maxTeams: 16,
-    description: "Coordination challenge",
+    description: "Match Format: Best of 3 Games (First to 21 points)",
     rules: `BADMINTON DOUBLES RULES
 
 Match Format:
@@ -984,7 +984,7 @@ Conduct:
     type: "solo",
     totalTeams: 15,
     maxTeams: 32,
-    description: "Lightning-fast reflexes",
+    description: "Match Format: Best of 5 Games (First to 11 points)",
     rules: `TABLE TENNIS SINGLES RULES
 
 Match Format:
@@ -1077,7 +1077,7 @@ Conduct:
     teamSize: 4,
     totalTeams: 3,
     maxTeams: 10,
-    description: "Speed and coordination",
+    description: "Match Format: Knockout",
     rules: `RELAY RACE RULES (4×100M)
 
 Team Composition:
@@ -1174,7 +1174,7 @@ Conduct:
     maxSubstitutes: 2,
     totalTeams: 2,
     maxTeams: 8,
-    description: "Raw power and unity",
+    description: "Match Format: Knockout",
     rules: `TUG OF WAR RULES
 
 Team Composition:
