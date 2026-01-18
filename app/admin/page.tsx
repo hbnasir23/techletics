@@ -72,6 +72,12 @@ interface Registration {
 // Fetch registrations from Supabase
 const fetchRegistrations = async (): Promise<Registration[]> => {
   try {
+    // Check if Supabase credentials are configured
+    if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+      toast.error('Supabase configuration missing')
+      return []
+    }
+
     const response = await fetch(`${SUPABASE_URL}/rest/v1/registrations?select=*,player:players(*),team:teams(*,sport:sports(*)),sport:sports(*)`, {
       headers: {
         'apikey': SUPABASE_ANON_KEY,
@@ -84,6 +90,7 @@ const fetchRegistrations = async (): Promise<Registration[]> => {
     }
 
     const data = await response.json()
+    // console.log('Raw registration data:', data);
 
     // Transform the data to match our Registration interface
     const registrationsMap = new Map<string, Registration>()
@@ -96,8 +103,8 @@ const fetchRegistrations = async (): Promise<Registration[]> => {
         const sportType = reg.sport.max_team_size === 1 ? 'solo' : 
                          reg.sport.max_team_size === 2 ? 'doubles' : 'team'
         
-        // Determine gender based on sport name or other criteria
-        const gender = reg.sport.name.toLowerCase().includes('throwball') ? 'female' : 'male'
+        // Use gender from registration data, fallback to player's gender
+        const gender = reg.gender || reg.player?.gender || 'male'
 
         if (reg.is_captain) {
           registrationsMap.set(teamKey, {
@@ -112,7 +119,7 @@ const fetchRegistrations = async (): Promise<Registration[]> => {
               captainEmail: reg.player.email,
               captainRollNo: reg.player.roll_number,
               captainPhone: reg.player.phone || 'N/A',
-              section: reg.team?.section || reg.player.year,
+              section: reg.team?.section || reg.player.section,
               teamName: reg.team?.team_name
             },
             teamMembers: [],
@@ -414,6 +421,8 @@ export default function AdminDashboard() {
                 <option value="SESE-B">SESE-B</option>
                 <option value="TESE-A">TESE-A</option>
                 <option value="TESE-B">TESE-B</option>
+                <option value="BESE-A">BESE-A</option>
+                <option value="BESE-B">BESE-B</option>
               </select>
             </div>
 

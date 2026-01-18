@@ -865,6 +865,7 @@ interface TeamMemberErrors {
 
 interface SportRegistrationModalProps {
   sport: Sport
+  gender: 'male' | 'female'
   isOpen: boolean
   onClose: () => void
 }
@@ -879,7 +880,7 @@ interface ValidationErrors {
   captainPhone?: string
 }
 
-export default function SportRegistrationModal({ sport, isOpen, onClose }: SportRegistrationModalProps) {
+export default function SportRegistrationModal({ sport, gender, isOpen, onClose }: SportRegistrationModalProps) {
   const [formData, setFormData] = useState({
     captainName: "",
     captainEmail: "",
@@ -925,7 +926,7 @@ export default function SportRegistrationModal({ sport, isOpen, onClose }: Sport
         setIsDemoMode(false)
         resetForm()
         toast.success('Demo data cleared')
-      }, 10000)
+      }, 8000)
     }
     
     return () => {
@@ -1151,6 +1152,7 @@ export default function SportRegistrationModal({ sport, isOpen, onClose }: Sport
       const submissionData = {
         sportName: sport.name,
         sportType: sport.type,
+        gender: gender,
         section: formData.section,
         teamName: formData.teamName || undefined,
         captain: {
@@ -1262,7 +1264,7 @@ export default function SportRegistrationModal({ sport, isOpen, onClose }: Sport
         setTeamMembers(demoMembers)
       }
       
-      toast.success('Demo data loaded (will clear in 10 seconds)')
+      toast.success('Demo data loaded (will clear in 8 seconds)')
     } else {
       if (demoTimeoutRef.current) {
         clearTimeout(demoTimeoutRef.current)

@@ -900,6 +900,7 @@ export default function Sports() {
         <>
           <SportRegistrationModal
             sport={selectedSport}
+            gender={gender}
             isOpen={showRegisterModal}
             onClose={() => {
               setShowRegisterModal(false);

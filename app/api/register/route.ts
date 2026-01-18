@@ -9,6 +9,7 @@ interface TeamMember {
 interface RegistrationRequest {
   sportName: string
   sportType: 'solo' | 'doubles' | 'team'
+  gender: 'male' | 'female'
   section: string
   teamName?: string
   captain: {
@@ -205,7 +206,8 @@ export async function POST(request: NextRequest) {
             name: playerName,
             email: playerEmail || `${playerRollNo}@cloud.neduet.edu.pk`,
             roll_number: playerRollNo,
-            year: playerYear,
+            section: section,
+            gender: body.gender,
           }
 
           // Only add phone if it exists (only captain has phone)
@@ -232,6 +234,7 @@ export async function POST(request: NextRequest) {
           player_id: playerId,
           sport_id: sportData.id,
           is_captain: isCaptain,
+          gender: body.gender,
         }
 
         // Only add team_id for team/doubles sports
