@@ -1501,10 +1501,12 @@ export default function SportRegistrationModal({ sport, gender, isOpen, onClose 
                     <label className="block text-sm font-bold text-cyan-300 mb-2">Phone Number *</label>
                     <div className="relative">
                       <input
-                        type="text"
+                        type="tel"
+                        inputMode="numeric"
                         value={formData.captainPhone}
                         onChange={(e) => handleFieldChange('captainPhone', e.target.value)}
                         onBlur={() => handleBlur('captainPhone')}
+                        autoComplete="off"
                         className={`w-full px-4 py-2 rounded-lg bg-slate-800/50 border ${
                           touched.captainPhone && errors.captainPhone
                             ? 'border-red-500 focus:border-red-400'
