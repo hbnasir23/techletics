@@ -193,7 +193,7 @@ export async function POST(request: NextRequest) {
         // Check if player exists
         const { data: existingPlayer } = await supabase
           .from("players")
-          .select("id")
+          .select("id, phone")
           .eq("roll_number", playerRollNo)
           .single()
 
@@ -225,6 +225,17 @@ export async function POST(request: NextRequest) {
           }
 
           playerId = newPlayer?.id
+        } else if (playerPhone && !existingPlayer.phone) {
+          // Update existing player with phone number if they don't have one
+          const { error: updateError } = await supabase
+            .from("players")
+            .update({ phone: playerPhone })
+            .eq("id", existingPlayer.id)
+
+          if (updateError) {
+            console.error("[v0] Player phone update error:", updateError)
+            // Don't fail registration if phone update fails, just log it
+          }
         }
 
         // Create registration
