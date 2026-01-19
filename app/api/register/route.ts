@@ -125,7 +125,7 @@ export async function POST(request: NextRequest) {
           if (existingReg) {
             const playerType = isCaptain ? "Captain" : "Team member"
             return NextResponse.json({ 
-              error: `${playerType} ${playerName} (${playerRollNo}) is already registered for this sport` 
+              error: `${playerName} (${playerRollNo}) is already registered for this sport` 
             }, { status: 409 })
           }
         }

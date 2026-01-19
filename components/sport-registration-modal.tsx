@@ -926,7 +926,7 @@ export default function SportRegistrationModal({ sport, gender, isOpen, onClose 
         setIsDemoMode(false)
         resetForm()
         toast.success('Demo data cleared')
-      }, 8000)
+      }, 6000)
     }
     
     return () => {
@@ -953,7 +953,7 @@ export default function SportRegistrationModal({ sport, gender, isOpen, onClose 
       case 'captainRollNo':
         if (!value) return 'Roll number is required'
         const rollNoRegex = /^SE-\d{5}$/
-        if (!rollNoRegex.test(value)) return 'Must match format: SE-23086'
+        if (!rollNoRegex.test(value)) return 'Must match format: SE-230XX'
         return undefined
 
       case 'section':
@@ -989,7 +989,7 @@ export default function SportRegistrationModal({ sport, gender, isOpen, onClose 
       case 'rollNo':
         if (!value) return 'Roll number is required'
         const rollNoRegex = /^SE-\d{5}$/
-        if (!rollNoRegex.test(value)) return 'Must match format: SE-23086'
+        if (!rollNoRegex.test(value)) return 'Must match format: SE-230XX'
         return undefined
 
       default:
@@ -1237,16 +1237,38 @@ export default function SportRegistrationModal({ sport, gender, isOpen, onClose 
     }
   }
 
+  const names = [
+    "Anas",
+    "Affan",
+    "Haris",
+    "Saad",
+    "Ammar",
+    "Rayyan",
+    "Maaz",
+    "Ahmer",
+  ];
+
+  const rollNumbers = [
+    23087,
+    23058,
+    23084,
+    23083,
+    23098,
+    23067,
+    23092,
+    23099
+  ];
+
   const loadDemoData = () => {
     setIsDemoMode(!isDemoMode)
     
     if (!isDemoMode) {
       setFormData({
-        captainName: "Enayat Ur Rehman",
+        captainName: "Enayat",
         captainEmail: "rehman4603321@cloud.neduet.edu.pk",
         captainRollNo: "SE-23086",
         section: "TESE-B",
-        teamName: sport.type !== 'solo' ? "Demo Team" : "",
+        teamName: sport.type !== 'solo' ? "Defeat Us If You Can - JK" : "",
         captainPhone: "03XXXXXXXXX",
       })
 
@@ -1257,14 +1279,14 @@ export default function SportRegistrationModal({ sport, gender, isOpen, onClose 
         const requiredCount = getRequiredMembersCount()
         for (let i = 0; i < requiredCount; i++) {
           demoMembers.push({
-            name: `Team Member ${i + 1}`,
-            rollNo: `SE-${23087 + i}`
+            name: names[i],
+            rollNo: `SE-${rollNumbers[i]}`
           })
         }
         setTeamMembers(demoMembers)
       }
       
-      toast.success('Demo data loaded (will clear in 8 seconds)')
+      toast.success('Demo data loaded (will clear in 6 seconds)')
     } else {
       if (demoTimeoutRef.current) {
         clearTimeout(demoTimeoutRef.current)
@@ -1369,15 +1391,7 @@ export default function SportRegistrationModal({ sport, gender, isOpen, onClose 
         {/* Content */}
         <div className="p-6">
           {/* Important Notice */}
-          <div className="mb-4 flex justify-end">
-            <button 
-              type="button" 
-              onClick={loadDemoData} 
-              className="text-xs text-cyan-400 hover:text-cyan-300 transition-colors"
-            >
-              {isDemoMode ? "Clear Demo" : "Load Demo"}
-            </button>
-          </div>
+         
           {sport.type !== 'solo' && (
             <div className="mb-6 p-4 rounded-lg border border-cyan-500/30 bg-cyan-950/20 backdrop-blur-sm">
               <div className="flex gap-3">
@@ -1394,6 +1408,15 @@ export default function SportRegistrationModal({ sport, gender, isOpen, onClose 
               </div>
             </div>
           )}
+           <div className="mb-4 flex justify-end">
+            <button 
+              type="button" 
+              onClick={loadDemoData} 
+              className="text-xs text-red-500 hover:text-red-300 transition-colors"
+            >
+              {isDemoMode ? "Clear Demo" : "Load Demo"}
+            </button>
+          </div>
 
           <div className="space-y-6">
             {/* Captain/Player Details */}
@@ -1482,7 +1505,7 @@ export default function SportRegistrationModal({ sport, gender, isOpen, onClose 
                             ? 'border-green-500 focus:border-green-400'
                             : 'border-slate-700 focus:border-cyan-400'
                         } text-white placeholder-gray-500 focus:outline-none transition-colors duration-300`}
-                        placeholder="SE-23086"
+                        placeholder="SE-230XX"
                       />
                       {touched.captainRollNo && !errors.captainRollNo && formData.captainRollNo && (
                         <CheckCircle2 className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-green-500" />
@@ -1692,7 +1715,7 @@ export default function SportRegistrationModal({ sport, gender, isOpen, onClose 
                                   ? 'border-green-500 focus:border-green-400'
                                   : 'border-slate-700 focus:border-cyan-400'
                               } text-white placeholder-gray-500 focus:outline-none transition-colors duration-300`}
-                              placeholder="SE-23086"
+                              placeholder="SE-230XX"
                             />
                             {teamMemberTouched[index]?.rollNo && !teamMemberErrors[index]?.rollNo && member.rollNo && (
                               <CheckCircle2 className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-green-500" />
