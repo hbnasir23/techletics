@@ -76,6 +76,7 @@ interface Registration {
     name: string
     type: 'solo' | 'doubles' | 'team'
     icon: string
+    maxTeamSize: number
   }
   captain: {
     captainName: string
@@ -92,6 +93,7 @@ interface Registration {
   registeredAt: string
   gender: 'male' | 'female'
 }
+
 
 // Fetch registrations from Supabase
 const fetchRegistrations = async (): Promise<Registration[]> => {
@@ -134,11 +136,13 @@ data.forEach((reg: any) => {
     if (reg.is_captain) {
       registrationsMap.set(teamKey, {
         id: teamKey,
-        sport: {
-          name: reg.sport.name,
-          type: sportType,
-          icon: reg.sport.icon || '🏆'
-        },
+sport: {
+  name: reg.sport.name,
+  type: sportType,
+  icon: reg.sport.icon || '🏆',
+  maxTeamSize: reg.sport.max_team_size
+},
+
         captain: {
           captainName: reg.player.name,
           captainEmail: reg.player.email,
@@ -153,12 +157,17 @@ data.forEach((reg: any) => {
       })
     }
   } else if (!reg.is_captain) {
-    const registration = registrationsMap.get(teamKey)!
-    registration.teamMembers.push({
-      name: reg.player.name,
-      rollNo: reg.player.roll_number
-    })
-  }
+  const registration = registrationsMap.get(teamKey)!
+
+  const allowedMembers = Math.max(0, registration.sport.maxTeamSize - 1) // excluding captain
+  if (registration.teamMembers.length >= allowedMembers) return
+
+  registration.teamMembers.push({
+    name: reg.player.name,
+    rollNo: reg.player.roll_number
+  })
+}
+
 })
 
 
