@@ -426,7 +426,7 @@ const FEMALE_SPORTS: Sport[] = [
     totalTeams: 4,
     maxTeams: 8,
     description:
-      "Match Format: KKnockout",
+      "Match Format: Knockout",
     rules: `THROWBALL RULES
 
 Team Format:

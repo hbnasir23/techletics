@@ -12,6 +12,10 @@ export const metadata: Metadata = {
   title: "TECHLETICS - Techletics 2.0",
   description:
     "Sports Registration website. Organized by the Head of Software Engineering Department.",
+    icons: {
+      icon: '/techletics_icon.png',
+      apple: '/techletics_icon.png',
+    },
 }
 
 export default function RootLayout({
