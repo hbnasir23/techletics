@@ -206,8 +206,7 @@ export async function POST(request: NextRequest) {
             name: playerName,
             email: playerEmail || `${playerRollNo}@cloud.neduet.edu.pk`,
             roll_number: playerRollNo,
-            section: section,
-            gender: body.gender,
+            year: playerYear,
           }
 
           // Only add phone if it exists (only captain has phone)
@@ -245,7 +244,6 @@ export async function POST(request: NextRequest) {
           player_id: playerId,
           sport_id: sportData.id,
           is_captain: isCaptain,
-          gender: body.gender,
         }
 
         // Only add team_id for team/doubles sports

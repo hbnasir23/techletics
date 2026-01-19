@@ -1176,6 +1176,7 @@ export default function SportRegistrationModal({ sport, gender, isOpen, onClose 
 
       const data = await response.json()
 
+      // Always dismiss loading toast first
       toast.dismiss(loadingToast)
 
       if (!response.ok) {
@@ -1184,14 +1185,19 @@ export default function SportRegistrationModal({ sport, gender, isOpen, onClose 
         return
       }
 
+      // Registration successful - show success toast
       console.log('Registration successful:', data)
-      toast.success('Registration successful! 🎉')
       
-      // Reset form and close modal
-      resetForm()
+      // Show success message with proper timing
+      toast.success('Registration successful! 🎉', {
+        duration: 3000,
+      })
+      
+      // Reset form and close modal after a delay to show the toast
       setTimeout(() => {
+        resetForm()
         onClose()
-      }, 1500)
+      }, 2000)
     } catch (error) {
       toast.dismiss(loadingToast)
       console.error('Request error:', error)
