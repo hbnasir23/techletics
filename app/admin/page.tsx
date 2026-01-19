@@ -119,47 +119,48 @@ const fetchRegistrations = async (): Promise<Registration[]> => {
     // Transform the data to match our Registration interface
     const registrationsMap = new Map<string, Registration>()
 
-    data.forEach((reg: any) => {
-      const teamKey = reg.team_id || reg.player_id
-      
-      if (!registrationsMap.has(teamKey)) {
-        // Determine sport type based on team size constraints
-        const sportType = reg.sport.max_team_size === 1 ? 'solo' : 
-                         reg.sport.max_team_size === 2 ? 'doubles' : 'team'
-        
-        // Use gender from registration data, fallback to player's gender
-        const gender = reg.gender || reg.player?.gender || 'male'
+data.forEach((reg: any) => {
+  const teamKey = reg.team_id
+    ? `team-${reg.team_id}-sport-${reg.sport_id}`
+    : `player-${reg.player_id}-sport-${reg.sport_id}`
 
-        if (reg.is_captain) {
-          registrationsMap.set(teamKey, {
-            id: reg.id,
-            sport: {
-              name: reg.sport.name,
-              type: sportType,
-              icon: reg.sport.icon || '🏆'
-            },
-            captain: {
-              captainName: reg.player.name,
-              captainEmail: reg.player.email,
-              captainRollNo: reg.player.roll_number,
-              captainPhone: reg.player.phone || 'N/A',
-              section: getSectionFromRollNo(reg.player?.roll_number),
-              teamName: reg.team?.team_name
-            },
-            teamMembers: [],
-            registeredAt: reg.registered_at,
-            gender: gender
-          })
-        }
-      } else if (!reg.is_captain) {
-        // Add team member to existing registration
-        const registration = registrationsMap.get(teamKey)!
-        registration.teamMembers.push({
-          name: reg.player.name,
-          rollNo: reg.player.roll_number
-        })
-      }
+  if (!registrationsMap.has(teamKey)) {
+    const sportType =
+      reg.sport.max_team_size === 1 ? 'solo' :
+      reg.sport.max_team_size === 2 ? 'doubles' : 'team'
+
+    const gender = reg.gender || reg.player?.gender || 'male'
+
+    if (reg.is_captain) {
+      registrationsMap.set(teamKey, {
+        id: teamKey,
+        sport: {
+          name: reg.sport.name,
+          type: sportType,
+          icon: reg.sport.icon || '🏆'
+        },
+        captain: {
+          captainName: reg.player.name,
+          captainEmail: reg.player.email,
+          captainRollNo: reg.player.roll_number,
+          captainPhone: reg.player.phone || 'N/A',
+          section: getSectionFromRollNo(reg.player?.roll_number),
+          teamName: reg.team?.team_name
+        },
+        teamMembers: [],
+        registeredAt: reg.registered_at,
+        gender: gender
+      })
+    }
+  } else if (!reg.is_captain) {
+    const registration = registrationsMap.get(teamKey)!
+    registration.teamMembers.push({
+      name: reg.player.name,
+      rollNo: reg.player.roll_number
     })
+  }
+})
+
 
     return Array.from(registrationsMap.values())
   } catch (error) {
