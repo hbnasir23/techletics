@@ -45,6 +45,30 @@ const ADMIN_CREDENTIALS = [
     password: "e87",
   },
 ]
+const getSectionFromRollNo = (rollNo?: string) => {
+  if (!rollNo) return 'N/A'
+
+  // Accept: "SE-23086" or "SE23086"
+  const match = rollNo.match(/-(\d{5})$/) || rollNo.match(/(\d{5})$/)
+  if (!match) return 'N/A'
+
+  const digits = match[1] // e.g. "23086"
+  const batch = digits.slice(0, 2) // "23"
+  const serial = parseInt(digits.slice(2), 10) // "086" -> 86
+
+  const programMap: Record<string, string> = {
+    '22': 'BESE',
+    '23': 'TESE',
+    '24': 'SESE',
+    '25': 'FESE',
+  }
+
+  const program = programMap[batch] ?? 'N/A'
+  if (program === 'N/A' || Number.isNaN(serial)) return 'N/A'
+
+  const sectionLetter = serial < 50 ? 'A' : 'B' // 50 and above => B
+  return `${program}-${sectionLetter}`
+}
 
 interface Registration {
   id: string
@@ -119,7 +143,7 @@ const fetchRegistrations = async (): Promise<Registration[]> => {
               captainEmail: reg.player.email,
               captainRollNo: reg.player.roll_number,
               captainPhone: reg.player.phone || 'N/A',
-              section: reg.team?.section || reg.player.section,
+              section: getSectionFromRollNo(reg.player?.roll_number),
               teamName: reg.team?.team_name
             },
             teamMembers: [],
