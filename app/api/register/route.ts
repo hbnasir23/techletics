@@ -202,7 +202,7 @@ export async function POST(request: NextRequest) {
 
         if (!existingPlayer) {
           // Create new player
-          const playerInsertData: any = {
+           const playerInsertData: any = {
             name: playerName,
             email: playerEmail || `${playerRollNo}@cloud.neduet.edu.pk`,
             roll_number: playerRollNo,
@@ -244,6 +244,7 @@ export async function POST(request: NextRequest) {
           player_id: playerId,
           sport_id: sportData.id,
           is_captain: isCaptain,
+          gender: body.gender,
         }
 
         // Only add team_id for team/doubles sports

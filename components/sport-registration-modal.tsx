@@ -953,7 +953,7 @@ export default function SportRegistrationModal({ sport, gender, isOpen, onClose 
       case 'captainRollNo':
         if (!value) return 'Roll number is required'
         const rollNoRegex = /^SE-\d{5}$/
-        if (!rollNoRegex.test(value)) return 'Must match format: SE-230XX'
+        if (!rollNoRegex.test(value)) return 'Must match format: SE-23086'
         return undefined
 
       case 'section':
@@ -1511,7 +1511,7 @@ export default function SportRegistrationModal({ sport, gender, isOpen, onClose 
                             ? 'border-green-500 focus:border-green-400'
                             : 'border-slate-700 focus:border-cyan-400'
                         } text-white placeholder-gray-500 focus:outline-none transition-colors duration-300`}
-                        placeholder="SE-230XX"
+                        placeholder="SE-23086"
                       />
                       {touched.captainRollNo && !errors.captainRollNo && formData.captainRollNo && (
                         <CheckCircle2 className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-green-500" />
@@ -1721,7 +1721,7 @@ export default function SportRegistrationModal({ sport, gender, isOpen, onClose 
                                   ? 'border-green-500 focus:border-green-400'
                                   : 'border-slate-700 focus:border-cyan-400'
                               } text-white placeholder-gray-500 focus:outline-none transition-colors duration-300`}
-                              placeholder="SE-230XX"
+                              placeholder="SE-23086"
                             />
                             {teamMemberTouched[index]?.rollNo && !teamMemberErrors[index]?.rollNo && member.rollNo && (
                               <CheckCircle2 className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-green-500" />

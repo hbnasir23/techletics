@@ -79,7 +79,7 @@ export default function Registration() {
                 value={formData.studentId}
                 onChange={(e) => setFormData((prev) => ({ ...prev, studentId: e.target.value }))}
                 className="w-full px-4 py-2 rounded-lg bg-slate-800/50 border border-slate-700 text-white placeholder-gray-500 focus:border-cyan-400 focus:outline-none transition-colors duration-300"
-                placeholder="SE-230XX"
+                placeholder="SE-23086"
                 required
               />
             </div>
