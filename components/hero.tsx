@@ -42,7 +42,7 @@ export default function Hero() {
 
         
         <p className="mb-2 text-xl md:text-2xl text-gray-300 max-w-2xl">
-          Where technology meets athletics. Experience the future of sports.
+          Where technology meets athletics. Code less, play more.
         </p>
         
         <p className="mb-8 text-sm text-gray-400">

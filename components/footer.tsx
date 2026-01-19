@@ -10,8 +10,7 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-bold text-cyan-400 mb-4">TECHLETICS</h3>
             <p className="text-gray-400 text-sm leading-relaxed">
-              A futuristic college sports event where technology meets athletics. Experience the future of competitive
-              sports.
+              No algorithms, no debugging—just pure competition. Leave the laptop behind and experience the thrill of the sport.
             </p>
           </div>
 
