@@ -865,6 +865,7 @@ interface TeamMemberErrors {
 
 interface SportRegistrationModalProps {
   sport: Sport
+  gender: 'male' | 'female'
   isOpen: boolean
   onClose: () => void
 }
@@ -879,7 +880,7 @@ interface ValidationErrors {
   captainPhone?: string
 }
 
-export default function SportRegistrationModal({ sport, isOpen, onClose }: SportRegistrationModalProps) {
+export default function SportRegistrationModal({ sport, gender, isOpen, onClose }: SportRegistrationModalProps) {
   const [formData, setFormData] = useState({
     captainName: "",
     captainEmail: "",
@@ -925,7 +926,7 @@ export default function SportRegistrationModal({ sport, isOpen, onClose }: Sport
         setIsDemoMode(false)
         resetForm()
         toast.success('Demo data cleared')
-      }, 10000)
+      }, 6000)
     }
     
     return () => {
@@ -952,7 +953,7 @@ export default function SportRegistrationModal({ sport, isOpen, onClose }: Sport
       case 'captainRollNo':
         if (!value) return 'Roll number is required'
         const rollNoRegex = /^SE-\d{5}$/
-        if (!rollNoRegex.test(value)) return 'Must match format: SE-23086'
+        if (!rollNoRegex.test(value)) return 'Must match format: SE-230XX'
         return undefined
 
       case 'section':
@@ -988,7 +989,7 @@ export default function SportRegistrationModal({ sport, isOpen, onClose }: Sport
       case 'rollNo':
         if (!value) return 'Roll number is required'
         const rollNoRegex = /^SE-\d{5}$/
-        if (!rollNoRegex.test(value)) return 'Must match format: SE-23086'
+        if (!rollNoRegex.test(value)) return 'Must match format: SE-230XX'
         return undefined
 
       default:
@@ -1151,6 +1152,7 @@ export default function SportRegistrationModal({ sport, isOpen, onClose }: Sport
       const submissionData = {
         sportName: sport.name,
         sportType: sport.type,
+        gender: gender,
         section: formData.section,
         teamName: formData.teamName || undefined,
         captain: {
@@ -1235,16 +1237,38 @@ export default function SportRegistrationModal({ sport, isOpen, onClose }: Sport
     }
   }
 
+  const names = [
+    "Anas",
+    "Affan",
+    "Haris",
+    "Saad",
+    "Ammar",
+    "Rayyan",
+    "Maaz",
+    "Ahmer",
+  ];
+
+  const rollNumbers = [
+    23087,
+    23058,
+    23084,
+    23083,
+    23098,
+    23067,
+    23092,
+    23099
+  ];
+
   const loadDemoData = () => {
     setIsDemoMode(!isDemoMode)
     
     if (!isDemoMode) {
       setFormData({
-        captainName: "Enayat Ur Rehman",
+        captainName: "Enayat",
         captainEmail: "rehman4603321@cloud.neduet.edu.pk",
         captainRollNo: "SE-23086",
         section: "TESE-B",
-        teamName: sport.type !== 'solo' ? "Demo Team" : "",
+        teamName: sport.type !== 'solo' ? "Defeat Us If You Can - JK" : "",
         captainPhone: "03XXXXXXXXX",
       })
 
@@ -1255,14 +1279,14 @@ export default function SportRegistrationModal({ sport, isOpen, onClose }: Sport
         const requiredCount = getRequiredMembersCount()
         for (let i = 0; i < requiredCount; i++) {
           demoMembers.push({
-            name: `Team Member ${i + 1}`,
-            rollNo: `SE-${23087 + i}`
+            name: names[i],
+            rollNo: `SE-${rollNumbers[i]}`
           })
         }
         setTeamMembers(demoMembers)
       }
       
-      toast.success('Demo data loaded (will clear in 10 seconds)')
+      toast.success('Demo data loaded (will clear in 6 seconds)')
     } else {
       if (demoTimeoutRef.current) {
         clearTimeout(demoTimeoutRef.current)
@@ -1367,15 +1391,7 @@ export default function SportRegistrationModal({ sport, isOpen, onClose }: Sport
         {/* Content */}
         <div className="p-6">
           {/* Important Notice */}
-          <div className="mb-4 flex justify-end">
-            <button 
-              type="button" 
-              onClick={loadDemoData} 
-              className="text-xs text-cyan-400 hover:text-cyan-300 transition-colors"
-            >
-              {isDemoMode ? "Clear Demo" : "Load Demo"}
-            </button>
-          </div>
+         
           {sport.type !== 'solo' && (
             <div className="mb-6 p-4 rounded-lg border border-cyan-500/30 bg-cyan-950/20 backdrop-blur-sm">
               <div className="flex gap-3">
@@ -1392,6 +1408,15 @@ export default function SportRegistrationModal({ sport, isOpen, onClose }: Sport
               </div>
             </div>
           )}
+           {/* <div className="mb-4 flex justify-end">
+            <button 
+              type="button" 
+              onClick={loadDemoData} 
+              className="text-xs text-red-500 hover:text-red-300 transition-colors"
+            >
+              {isDemoMode ? "Clear Demo" : "Load Demo"}
+            </button>
+          </div> */}
 
           <div className="space-y-6">
             {/* Captain/Player Details */}
@@ -1480,7 +1505,7 @@ export default function SportRegistrationModal({ sport, isOpen, onClose }: Sport
                             ? 'border-green-500 focus:border-green-400'
                             : 'border-slate-700 focus:border-cyan-400'
                         } text-white placeholder-gray-500 focus:outline-none transition-colors duration-300`}
-                        placeholder="SE-23086"
+                        placeholder="SE-230XX"
                       />
                       {touched.captainRollNo && !errors.captainRollNo && formData.captainRollNo && (
                         <CheckCircle2 className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-green-500" />
@@ -1499,10 +1524,12 @@ export default function SportRegistrationModal({ sport, isOpen, onClose }: Sport
                     <label className="block text-sm font-bold text-cyan-300 mb-2">Phone Number *</label>
                     <div className="relative">
                       <input
-                        type="text"
+                        type="tel"
+                        inputMode="numeric"
                         value={formData.captainPhone}
                         onChange={(e) => handleFieldChange('captainPhone', e.target.value)}
                         onBlur={() => handleBlur('captainPhone')}
+                        autoComplete="off"
                         className={`w-full px-4 py-2 rounded-lg bg-slate-800/50 border ${
                           touched.captainPhone && errors.captainPhone
                             ? 'border-red-500 focus:border-red-400'
@@ -1688,7 +1715,7 @@ export default function SportRegistrationModal({ sport, isOpen, onClose }: Sport
                                   ? 'border-green-500 focus:border-green-400'
                                   : 'border-slate-700 focus:border-cyan-400'
                               } text-white placeholder-gray-500 focus:outline-none transition-colors duration-300`}
-                              placeholder="SE-23086"
+                              placeholder="SE-230XX"
                             />
                             {teamMemberTouched[index]?.rollNo && !teamMemberErrors[index]?.rollNo && member.rollNo && (
                               <CheckCircle2 className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-green-500" />
