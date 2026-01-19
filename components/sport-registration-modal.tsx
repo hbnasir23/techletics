@@ -1408,7 +1408,7 @@ export default function SportRegistrationModal({ sport, gender, isOpen, onClose 
               </div>
             </div>
           )}
-           <div className="mb-4 flex justify-end">
+           {/* <div className="mb-4 flex justify-end">
             <button 
               type="button" 
               onClick={loadDemoData} 
@@ -1416,7 +1416,7 @@ export default function SportRegistrationModal({ sport, gender, isOpen, onClose 
             >
               {isDemoMode ? "Clear Demo" : "Load Demo"}
             </button>
-          </div>
+          </div> */}
 
           <div className="space-y-6">
             {/* Captain/Player Details */}
