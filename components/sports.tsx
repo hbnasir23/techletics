@@ -877,7 +877,7 @@ export default function Sports() {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="flex-1 border-magenta-400/50 text-magenta-300 hover:bg-magenta-500/10 bg-transparent"
+                    className="flex-1 border-magenta-400/50 text-magenta-300 bg-transparent hover:bg-magenta-500/10"
                     onClick={() => handleViewRules(sport)}
                   >
                     View Rules
