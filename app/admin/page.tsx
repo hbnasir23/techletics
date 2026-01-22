@@ -157,6 +157,7 @@ export default function AdminDashboard() {
     gender: 'all' as 'all' | 'male' | 'female',
     sportType: 'all' as 'all' | 'solo' | 'doubles' | 'team',
     section: 'all',
+    rollRange: 'all' as 'all' | '22-25',
     searchQuery: ''
   })
 
@@ -202,6 +203,11 @@ export default function AdminDashboard() {
     if (filters.gender !== 'all' && reg.gender !== filters.gender) return false
     if (filters.sportType !== 'all' && reg.sport.type !== filters.sportType) return false
     if (filters.section !== 'all' && reg.captain.section !== filters.section) return false
+    // Roll number range filter
+    if (filters.rollRange === '22-25') {
+      const roll = parseInt(reg.captain.captainRollNo.replace(/\D/g, ''))
+      if (isNaN(roll) || roll < 22001 || roll > 25999) return false
+    }
     if (filters.searchQuery) {
       const query = filters.searchQuery.toLowerCase()
       return (
@@ -426,6 +432,23 @@ export default function AdminDashboard() {
               </select>
             </div>
 
+            <div>
+              <label className="block text-sm font-bold text-gray-300 mb-2">
+                Roll Number Range
+              </label>
+              <select
+                value={filters.rollRange}
+                onChange={(e) =>
+                  setFilters(prev => ({ ...prev, rollRange: e.target.value as any }))
+                }
+                className="w-full px-3 py-2 rounded-lg bg-slate-800 border border-slate-700 text-white focus:border-cyan-400 focus:outline-none"
+              >
+                <option value="all">All</option>
+                <option value="22-25">22001 – 25999</option>
+              </select>
+            </div>
+
+
             {/* Search */}
             <div>
               <label className="block text-sm font-bold text-gray-300 mb-2">Search</label>
@@ -444,7 +467,7 @@ export default function AdminDashboard() {
 
           <div className="mt-4 flex gap-3">
             <Button
-              onClick={() => setFilters({ gender: 'all', sportType: 'all', section: 'all', searchQuery: '' })}
+              onClick={() => setFilters({ gender: 'all', sportType: 'all', section: 'all', rollRange: 'all', searchQuery: '' })}
               variant="outline"
               className="border-gray-600 text-gray-300"
             >
