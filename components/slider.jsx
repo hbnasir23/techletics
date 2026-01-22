@@ -10,7 +10,7 @@ export default function Slider() {
     if (!slider) return;
 
     let position = 0;
-    const speed = 1.5; // Adjust speed (lower = slower, smoother)
+    const speed = 2.0; // Adjust speed (lower = slower, smoother)
 
     const animate = () => {
       position -= speed;
@@ -33,13 +33,21 @@ export default function Slider() {
     };
   }, []);
 
-  const texts = ['28th 29th', 'January'];
+  // const texts = ['28th 29th', 'January'];
+  const texts = [
+  'Event Dates:',
+  '28th January, 2026 – Wednesday',
+  '29th January, 2026 – Thursday',
+  'Mark Your Calendars!',
+];
+
+
   
   // Create multiple copies for seamless loop
   const items = Array(12).fill(texts).flat();
 
   return (
-    <div className="w-full overflow-hidden bg-black relative  ">
+    <div className="w-full overflow-hidden bg-black relative h-24 md:h-32 flex items-center ">
       {/* Subtle grid overlay matching hero */}
       <div className="absolute inset-0 opacity-10"
            style={{
@@ -62,7 +70,7 @@ export default function Slider() {
         {items.map((text, index) => (
           <div
             key={index}
-            className="inline-flex items-center justify-center px-4 md:px-8 mt-5 py-2 md:py-4 text-xl md:text-5xl  font-bold"
+            className="inline-flex items-center justify-center px-4 md:px-8  py-2 md:py-4 text-xl md:text-5xl  font-bold"
           >
             <span className="bg-gradient-to-r from-cyan-400 to-magenta-400 bg-clip-text text-transparent drop-shadow-lg"
                   style={{
