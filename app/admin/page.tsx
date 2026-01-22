@@ -45,6 +45,30 @@ const ADMIN_CREDENTIALS = [
     password: "e87",
   },
 ]
+const getSectionFromRollNo = (rollNo?: string) => {
+  if (!rollNo) return 'N/A'
+
+  // Accept: "SE-23086" or "SE23086"
+  const match = rollNo.match(/-(\d{5})$/) || rollNo.match(/(\d{5})$/)
+  if (!match) return 'N/A'
+
+  const digits = match[1] // e.g. "23086"
+  const batch = digits.slice(0, 2) // "23"
+  const serial = parseInt(digits.slice(2), 10) // "086" -> 86
+
+  const programMap: Record<string, string> = {
+    '22': 'BESE',
+    '23': 'TESE',
+    '24': 'SESE',
+    '25': 'FESE',
+  }
+
+  const program = programMap[batch] ?? 'N/A'
+  if (program === 'N/A' || Number.isNaN(serial)) return 'N/A'
+
+  const sectionLetter = serial < 50 ? 'A' : 'B' // 50 and above => B
+  return `${program}-${sectionLetter}`
+}
 
 interface Registration {
   id: string
@@ -52,6 +76,7 @@ interface Registration {
     name: string
     type: 'solo' | 'doubles' | 'team'
     icon: string
+    maxTeamSize: number
   }
   captain: {
     captainName: string
@@ -68,6 +93,7 @@ interface Registration {
   registeredAt: string
   gender: 'male' | 'female'
 }
+
 
 // Fetch registrations from Supabase
 const fetchRegistrations = async (): Promise<Registration[]> => {
@@ -95,47 +121,55 @@ const fetchRegistrations = async (): Promise<Registration[]> => {
     // Transform the data to match our Registration interface
     const registrationsMap = new Map<string, Registration>()
 
-    data.forEach((reg: any) => {
-      const teamKey = reg.team_id || reg.player_id
-      
-      if (!registrationsMap.has(teamKey)) {
-        // Determine sport type based on team size constraints
-        const sportType = reg.sport.max_team_size === 1 ? 'solo' : 
-                         reg.sport.max_team_size === 2 ? 'doubles' : 'team'
-        
-        // Use gender from registration data, fallback to player's gender
-        const gender = reg.gender || reg.player?.gender || 'male'
+data.forEach((reg: any) => {
+  const teamKey = reg.team_id
+    ? `team-${reg.team_id}-sport-${reg.sport_id}`
+    : `player-${reg.player_id}-sport-${reg.sport_id}`
 
-        if (reg.is_captain) {
-          registrationsMap.set(teamKey, {
-            id: reg.id,
-            sport: {
-              name: reg.sport.name,
-              type: sportType,
-              icon: reg.sport.icon || '🏆'
-            },
-            captain: {
-              captainName: reg.player.name,
-              captainEmail: reg.player.email,
-              captainRollNo: reg.player.roll_number,
-              captainPhone: reg.player.phone || 'N/A',
-              section: reg.team?.section || reg.player.section,
-              teamName: reg.team?.team_name
-            },
-            teamMembers: [],
-            registeredAt: reg.registered_at,
-            gender: gender
-          })
-        }
-      } else if (!reg.is_captain) {
-        // Add team member to existing registration
-        const registration = registrationsMap.get(teamKey)!
-        registration.teamMembers.push({
-          name: reg.player.name,
-          rollNo: reg.player.roll_number
-        })
-      }
-    })
+  if (!registrationsMap.has(teamKey)) {
+    const sportType =
+      reg.sport.max_team_size === 1 ? 'solo' :
+      reg.sport.max_team_size === 2 ? 'doubles' : 'team'
+
+    const gender = reg.gender || reg.player?.gender || 'male'
+
+    if (reg.is_captain) {
+      registrationsMap.set(teamKey, {
+        id: teamKey,
+sport: {
+  name: reg.sport.name,
+  type: sportType,
+  icon: reg.sport.icon || '🏆',
+  maxTeamSize: reg.sport.max_team_size
+},
+
+        captain: {
+          captainName: reg.player.name,
+          captainEmail: reg.player.email,
+          captainRollNo: reg.player.roll_number,
+          captainPhone: reg.player.phone || 'N/A',
+          section: getSectionFromRollNo(reg.player?.roll_number),
+          teamName: reg.team?.team_name
+        },
+        teamMembers: [],
+        registeredAt: reg.registered_at,
+        gender: gender
+      })
+    }
+  } else if (!reg.is_captain) {
+  const registration = registrationsMap.get(teamKey)!
+
+  const allowedMembers = Math.max(0, registration.sport.maxTeamSize - 1) // excluding captain
+  if (registration.teamMembers.length >= allowedMembers) return
+
+  registration.teamMembers.push({
+    name: reg.player.name,
+    rollNo: reg.player.roll_number
+  })
+}
+
+})
+
 
     return Array.from(registrationsMap.values())
   } catch (error) {
