@@ -237,6 +237,7 @@ export default function AdminDashboard() {
   const filteredRegistrations = registrations.filter(reg => {
     if (filters.gender !== 'all' && reg.gender !== filters.gender) return false
     if (filters.sportType !== 'all' && reg.sport.type !== filters.sportType) return false
+    if (filters.sportsName !== 'all' && reg.sport.name !== filters.sportsName) return false
     if (filters.section !== 'all' && reg.captain.section !== filters.section) return false
     // Roll number range filter
     if (filters.rollRange === '22-25') {
@@ -458,7 +459,7 @@ export default function AdminDashboard() {
               <select
                 value={filters.sportsName}
                 onChange={(e) =>
-                  setFilters(prev => ({ ...prev, sportName: e.target.value }))
+                  setFilters(prev => ({ ...prev, sportsName: e.target.value }))
                 }
                 className="w-full px-3 py-2 rounded-lg bg-slate-800 border border-slate-700 text-white focus:border-cyan-400 focus:outline-none"
               >
