@@ -190,6 +190,7 @@ export default function AdminDashboard() {
   const [filters, setFilters] = useState({
     gender: 'all' as 'all' | 'male' | 'female',
     sportType: 'all' as 'all' | 'solo' | 'doubles' | 'team',
+    sportsName: 'all',
     section: 'all',
     rollRange: 'all' as 'all' | '22-25',
     searchQuery: ''
@@ -286,6 +287,10 @@ export default function AdminDashboard() {
     a.click()
     toast.success('CSV exported successfully!')
   }
+
+  const sportOptions = Array.from(
+      new Set(registrations.map(r => r.sport.name))
+  )
 
   // Login Screen
   if (!isAuthenticated) {
@@ -446,6 +451,27 @@ export default function AdminDashboard() {
               </select>
             </div>
 
+            <div>
+              <label className="block text-sm font-bold text-gray-300 mb-2">
+                Sport
+              </label>
+              <select
+                value={filters.sportsName}
+                onChange={(e) =>
+                  setFilters(prev => ({ ...prev, sportName: e.target.value }))
+                }
+                className="w-full px-3 py-2 rounded-lg bg-slate-800 border border-slate-700 text-white focus:border-cyan-400 focus:outline-none"
+              >
+                <option value="all">All Sports</option>
+                {sportOptions.map(sport => (
+                  <option key={sport} value={sport}>
+                    {sport}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+
             {/* Section Filter */}
             <div>
               <label className="block text-sm font-bold text-gray-300 mb-2">Section</label>
@@ -501,7 +527,7 @@ export default function AdminDashboard() {
 
           <div className="mt-4 flex gap-3">
             <Button
-              onClick={() => setFilters({ gender: 'all', sportType: 'all', section: 'all', rollRange: 'all', searchQuery: '' })}
+              onClick={() => setFilters({ gender: 'all', sportType: 'all', sportsName: 'all', section: 'all', rollRange: 'all', searchQuery: '' })}
               variant="outline"
               className="border-gray-600 text-gray-300"
             >
